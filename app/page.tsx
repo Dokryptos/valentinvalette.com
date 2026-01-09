@@ -1,3 +1,5 @@
+import HomeComponent from "@/components/home";
+
 export default function Home() {
-  return <div className="flex min-h-screen items-center justify-center"></div>;
+  return <HomeComponent />;
 }
