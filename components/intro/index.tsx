@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -37,26 +38,24 @@ export default function Intro() {
   return (
     <>
       {showIntro && (
-        <div>
-          <motion.div
-            className={`fixed inset-0 z-45 bg-[#998D77] ${isVisibleBg ? "block" : "hidden"}`}
-            initial={{ y: 0 }}
-            animate={{ y: "-100%" }}
-            transition={{ duration: 0.5, delay: 1, ease: "easeOut" }}
-          ></motion.div>
-          <motion.div
-            className={`fixed z-50 mt-20 mb-20 inset-0 flex items-center justify-center ${isVisibleH1 ? "block" : "hidden"}`}
-          >
-            <motion.h1
-              className="font-neueGrotesk text-[#FAEEBC] dekstop:text-[70px] tablet:text-[45px] text-[35px]"
-              initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
-              transition={{ duration: 0.5, delay: 2, ease: "easeOut" }}
+        <Suspense>
+          <div>
+            <motion.div
+              className={`fixed inset-0 z-45 bg-[#998D77] ${isVisibleBg ? "block" : "hidden"}`}
+              initial={{ x: 0 }}
+              animate={{ x: "+100%" }}
+              transition={{ duration: 0.5, delay: 1, ease: "easeOut" }}
             >
-              Valentin Valette
-            </motion.h1>
-          </motion.div>
-        </div>
+              <motion.div
+                className={`fixed z-50 mt-20 mb-20 inset-0 flex items-center justify-center ${isVisibleH1 ? "block" : "hidden"}`}
+              >
+                <h1 className="font-neueGrotesk text-[#FAEEBC] dekstop:text-[70px] tablet:text-[45px] text-[35px]">
+                  Valentin Valette
+                </h1>
+              </motion.div>
+            </motion.div>
+          </div>
+        </Suspense>
       )}
     </>
   );
