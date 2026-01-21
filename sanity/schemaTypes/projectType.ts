@@ -57,6 +57,22 @@ export const projectType = defineType({
         "The first image use for the presentation of the project (Obligation)",
     }),
     defineField({
+      name: "category",
+      title: "Category",
+      type: "string",
+      validation: (rule) =>
+        rule.required().error(`Required to generate a page on the website`),
+      description: "The category of the project (Obligation)",
+    }),
+    defineField({
+      name: "description",
+      title: "Description",
+      type: "text",
+      validation: (rule) =>
+        rule.required().error(`Required to generate a page on the website`),
+      description: "The descritpion of the art (Obligation)",
+    }),
+    defineField({
       name: "gallery",
       title: "gallery",
       type: "array",
