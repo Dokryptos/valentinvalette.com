@@ -7,7 +7,6 @@ export default function Intro() {
   const [showIntro, setShowIntro] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isVisibleBg, setIsVisibleBg] = useState(true);
-  const [isVisibleH1, setIsVisibleH1] = useState(true);
 
   const [randomBg, setRandomBg] = useState("#998D77");
 
@@ -23,17 +22,12 @@ export default function Intro() {
 
       setShowIntro(true);
 
-      const timerH1 = setTimeout(() => {
-        setIsVisibleH1(false);
-      }, 1150);
-
       const timerBg = setTimeout(() => {
         setIsVisibleBg(false);
         sessionStorage.setItem("hasSeenH1Animate", "true");
       }, 1500);
 
       return () => {
-        clearTimeout(timerH1);
         clearTimeout(timerBg);
       };
     }
@@ -52,7 +46,7 @@ export default function Intro() {
       >
         <motion.div
           className={`fixed inset-0 flex items-center justify-center ${
-            isVisibleH1
+            isVisibleBg
               ? "opacity-100"
               : "opacity-0 transition-opacity duration-300"
           }`}
