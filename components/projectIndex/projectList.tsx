@@ -12,18 +12,16 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
   const [hoveredImage, setHoveredImage] = useState<SanityImage | null>(
     projectArray[0]?.thumbnail || null,
   );
-  const [hoveredImageId, setHoveredImageId] = useState<string | null>(
-    projectArray[0]?._id || null,
-  );
+
   const [hoveredLink, setHoveredLink] = useState<string | null>(
     projectArray[0]?.slug.current || null,
   );
 
   return (
-    <div className="flex items-center h-full pl-5 pt-6">
+    <div className="flex items-center h-full">
       <div className="w-full h-full overflow-x-auto overflow-y-hidden">
         <div
-          className="grid gap-y-6 gap-x-3"
+          className="grid gap-y-6 gap-x-3 pl-5"
           style={{
             gridTemplateRows: "repeat(4, 1fr)",
             gridAutoFlow: "column",
@@ -36,7 +34,6 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
               key={project._id}
               onMouseEnter={() => {
                 setHoveredImage(project.thumbnail);
-                setHoveredImageId(project._id);
                 setHoveredLink(project.slug.current);
               }}
             >

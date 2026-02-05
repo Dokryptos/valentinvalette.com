@@ -74,6 +74,14 @@ export const projectType = defineType({
       description: "The category of the project (Obligation)",
     }),
     defineField({
+      name: "year",
+      title: "Year",
+      type: "number",
+      validation: (rule) =>
+        rule.required().error(`Required to generate a page on the website`),
+      description: "The year the project was created (Obligation)",
+    }),
+    defineField({
       name: "description",
       title: "Description",
       type: "text",

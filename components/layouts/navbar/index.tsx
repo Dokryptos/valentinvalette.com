@@ -10,8 +10,8 @@ export default function Navbar() {
 
   return (
     <nav>
-      <Grid className="pt-3 pr-5 pl-5 text-[11px] font-suisseIntl ">
-        <div className="col-start-1 col-span-1 flex flex-col text-[#AAAAAA]">
+      <Grid className="pt-3 pr-5 pl-5 text-[15px] md:text-[11px] lg:text-[15px] font-SuisseIntl">
+        <div className="col-start-1 col-span-1 flex flex-col text-[#AAAAAA] text-[15px] md:text-[11px] lg:text-[15px] font-suisseIntl">
           <Link className="text-black" href="/">
             All
           </Link>
@@ -51,7 +51,7 @@ export default function Navbar() {
             </div>
           )}
         </div>
-        <div className="col-start-10">
+        <div className="col-start-10 lg:col-start-12">
           <Link href="/about">About</Link>
         </div>
       </Grid>

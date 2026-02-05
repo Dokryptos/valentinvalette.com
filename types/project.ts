@@ -17,5 +17,6 @@ export default interface Project {
   thumbnail: SanityImage;
   category: string;
   description: string;
+  year: number;
   gallery: SanityImage[];
 }

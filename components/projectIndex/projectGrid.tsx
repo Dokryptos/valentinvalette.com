@@ -1,10 +1,9 @@
 "use client";
 
-import Project, { SanityImage } from "@/types/project";
+import Project from "@/types/project";
 import { UIImageSanity } from "../ui/image/sanity";
 import Link from "next/link";
 import { useState } from "react";
-import Grid from "../ui/grid";
 import { motion } from "framer-motion";
 import type ProjectType from "@/types/project";
 
@@ -24,15 +23,17 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
   };
 
   return (
-    <Grid className="gap-x-5">
+    <div className="gap-x-3 gap-y-5 pr-5 pl-5 grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6">
       {projectArray.map((project: ProjectType, i: number) => (
         <motion.div
           custom={i}
           initial="hidden"
           animate="visible"
-          className="mb-10"
+          className=""
           variants={gridAnimationVariant}
           key={project._id}
+          onMouseEnter={() => setHoveredImageId(project._id)}
+          onMouseLeave={() => setHoveredImageId(null)}
         >
           <Link
             href={`/${project?.slug?.current}`}
@@ -46,14 +47,16 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
               className="pb-3"
               alt={`Grid image ${project.title}`}
             />
-            <h2
-              className={`opacity-100 ${hoveredImageId === project._id ? "laptop:opacity-100" : "laptop:opacity-0"}`}
-            >
-              {project?.title}, {project.gallery.length} Images
-            </h2>
+            <div className="pt-3">
+              <div>
+                <h2>{project?.title}</h2>
+                <span>{project?.year}</span>
+              </div>
+              <span>{project?.category}</span>
+            </div>
           </Link>
         </motion.div>
       ))}
-    </Grid>
+    </div>
   );
 }

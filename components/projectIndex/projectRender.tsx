@@ -12,7 +12,7 @@ export default function ProjectListComponent({ projectArray }: ProjectProps) {
   const { viewMode } = useViewMode();
 
   return (
-    <div className="">
+    <div className="pt-6">
       <div>
         {viewMode === "grid" ? (
           <ProjectGrid projectArray={projectArray} />
