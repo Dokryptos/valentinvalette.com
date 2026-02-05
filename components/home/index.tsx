@@ -21,9 +21,9 @@ export default function HomeComponent({ projects }: HomeProps) {
 
   return (
     <div className="flex items-center h-full pl-5">
-      <div className="w-full h-full overflow-x-auto overflow-y-hidden flex items-center">
+      <div className="w-full h-full overflow-x-auto overflow-y-hidden">
         <div
-          className="grid gap-10 p-8"
+          className="grid gap-y-6 gap-x-3"
           style={{
             gridTemplateRows: "repeat(4, 1fr)",
             gridAutoFlow: "column",
@@ -32,7 +32,7 @@ export default function HomeComponent({ projects }: HomeProps) {
         >
           {projects.map((project, index) => (
             <div
-              className="font-SuisseIntl"
+              className="font-SuisseIntl flex cursor-pointer w-[310px] md:w-[220px] lg:w-[220px] xl:w-[340px] z-10"
               key={project._id}
               onMouseEnter={() => {
                 setHoveredImage(project.thumbnail);
@@ -40,8 +40,8 @@ export default function HomeComponent({ projects }: HomeProps) {
                 setHoveredLink(project.slug.current);
               }}
             >
-              <span className="text-[15px] md:text-[11px] lg:text-[15px]">
-                {index < 10 ? `0${index}` : index}
+              <span className="text-[15px] md:text-[11px] lg:text-[15px] pr-3 ">
+                {index < 9 ? `0${index + 1}` : index + 1}
               </span>
               <div>
                 <h2 className="font-PPeditorialNew text-[28px] md:text-[18px] lg:text-[28px]">
@@ -61,14 +61,18 @@ export default function HomeComponent({ projects }: HomeProps) {
         </div>
       </div>
       {hoveredImage && (
-        <Link href={`/${hoveredLink}`}>
-          <UIImageSanity
-            key={hoveredImageId}
-            asset={hoveredImage}
-            alt={`Thumbnail hovered ${hoveredImageId}`}
-            className="bottom-5 fixed right-5 z-0 object-contain desktop:max-h-[450px] desktop:max-w-[400px] laptop:max-h-[400px] laptop:max-w-[350px]"
-          />
-        </Link>
+        <div>
+          <Link
+            href={`/${hoveredLink}`}
+            className="bottom-5 fixed right-5 z-0 block overflow-hidden "
+          >
+            <UIImageSanity
+              asset={hoveredImage}
+              className="w-auto h-auto max-h-[200px] xl:max-h-[450px] xl:max-w-[400px] lg:max-h-[400px] lg:max-w-[350px] object-contain"
+              alt=""
+            />
+          </Link>
+        </div>
       )}
     </div>
   );

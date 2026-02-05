@@ -1,11 +1,13 @@
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import imageUrlBuilder from "@sanity/image-url";
-import { client } from "@/sanity/lib/client";
+import { HTMLProps } from "react";
 
-const builder = imageUrlBuilder(client);
+const builder = imageUrlBuilder({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "",
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
+});
 
 const urlForImage = (source: SanityImageSource) => builder.image(source);
-import { HTMLProps } from "react";
 
 export type UIImageSanityProps = {
   // linked asset from sanity
@@ -24,7 +26,7 @@ export const UIImageSanity = ({
 }: UIImageSanityProps) => {
   if (!asset) return null;
 
-  const imageUrl = urlForImage(asset).url();
+  const imageUrl = urlForImage(asset)?.url() || "";
 
   return (
     // eslint-disable-next-line @next/next/no-img-element
