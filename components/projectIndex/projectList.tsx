@@ -5,22 +5,22 @@ import { UIImageSanity } from "../ui/image/sanity";
 import Link from "next/link";
 import { useState } from "react";
 
-interface HomeProps {
-  projects: Project[];
+interface ProjectListProps {
+  projectArray: Project[];
 }
-export default function HomeComponent({ projects }: HomeProps) {
+export default function ProjectList({ projectArray }: ProjectListProps) {
   const [hoveredImage, setHoveredImage] = useState<SanityImage | null>(
-    projects[0]?.thumbnail || null,
+    projectArray[0]?.thumbnail || null,
   );
   const [hoveredImageId, setHoveredImageId] = useState<string | null>(
-    projects[0]?._id || null,
+    projectArray[0]?._id || null,
   );
   const [hoveredLink, setHoveredLink] = useState<string | null>(
-    projects[0]?.slug.current || null,
+    projectArray[0]?.slug.current || null,
   );
 
   return (
-    <div className="flex items-center h-full pl-5 pt-7">
+    <div className="flex items-center h-full pl-5 pt-6">
       <div className="w-full h-full overflow-x-auto overflow-y-hidden">
         <div
           className="grid gap-y-6 gap-x-3"
@@ -30,7 +30,7 @@ export default function HomeComponent({ projects }: HomeProps) {
             gridAutoRows: "23%",
           }}
         >
-          {projects.map((project, index) => (
+          {projectArray.map((project, index) => (
             <div
               className="font-SuisseIntl flex cursor-pointer w-77.5 md:w-55 lg:w-55 xl:w-85 z-10"
               key={project._id}

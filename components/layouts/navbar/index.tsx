@@ -31,7 +31,7 @@ export default function Navbar() {
             Companies
           </Link>
         </div>
-        <div className="col-start-7 flex flex-col">
+        <div className="col-start-7 col-span-2 flex flex-col">
           <div>Index</div>
           {pathname === "/" && (
             <div className="font-PPeditorialNew">
