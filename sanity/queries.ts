@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 export const INDEX_QUERY = defineQuery(`*[
   _type == "project"
   && defined(slug.current)
-]{_id, title, slug, thumbnail, gallery, shortTitle }`);
+]{_id, title, slug, thumbnail, gallery, category, shortTitle }`);
 
 // Fonction pour récupérer les projets (Serveur)
 export async function getAllProjects(): Promise<ProjectType[]> {
@@ -25,7 +25,7 @@ export const INDEX_PROJECT_QUERY = defineQuery(`
 "projectArray": *[
   _type == "project"
   && defined(slug.current)
-] | order(orderRank) {_id, title, slug, description, thumbnail, gallery, tags, details, shortTitle }
+] | order(orderRank) {_id, title, slug, description, thumbnail, gallery, category, details, shortTitle }
 }
 `);
 

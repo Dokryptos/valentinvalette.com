@@ -60,6 +60,15 @@ export const projectType = defineType({
       name: "category",
       title: "Category",
       type: "string",
+      options: {
+        list: [
+          { title: "Portraits", value: "portraits" },
+          { title: "Stories", value: "stories" },
+          { title: "Companies", value: "companies" },
+          { title: "Diary", value: "diary" },
+          { title: "Documentaries", value: "documentaries" },
+        ],
+      },
       validation: (rule) =>
         rule.required().error(`Required to generate a page on the website`),
       description: "The category of the project (Obligation)",
