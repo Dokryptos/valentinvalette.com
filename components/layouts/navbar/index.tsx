@@ -15,8 +15,8 @@ export default function Navbar() {
           <Link className="text-black" href="/">
             All
           </Link>
-          <Link className="hover:text-black" href="/documentaires">
-            Documentaires
+          <Link className="hover:text-black" href="/documentaries">
+            Documentaries
           </Link>
           <Link className="hover:text-black" href="/stories">
             Stories
