@@ -12,28 +12,61 @@ export default function Navbar() {
     <nav>
       <Grid className="pt-3 pr-3 pl-3 md:pr-5 md:pl-5 text-[15px] md:text-[11px] lg:text-[15px] font-SuisseIntl">
         <div className="col-start-1 col-span-1 flex flex-col text-[#AAAAAA] text-[15px] md:text-[11px] lg:text-[15px] font-suisseIntl">
-          <Link className="text-black" href="/">
+          <Link
+            className={pathname === "/" ? "text-black" : "hover:text-black"}
+            href="/"
+          >
             All
           </Link>
-          <Link className="hover:text-black" href="/documentaries">
+          <Link
+            className={
+              pathname === "/documentaries" ? "text-black" : "hover:text-black"
+            }
+            href="/documentaries"
+          >
             Documentaries
           </Link>
-          <Link className="hover:text-black" href="/stories">
+          <Link
+            className={
+              pathname === "/stories" ? "text-black" : "hover:text-black"
+            }
+            href="/stories"
+          >
             Stories
           </Link>
-          <Link className="hover:text-black" href="/diary">
+          <Link
+            className={
+              pathname === "/diary" ? "text-black" : "hover:text-black"
+            }
+            href="/diary"
+          >
             Diary
           </Link>
-          <Link className="hover:text-black" href="/portraits">
+          <Link
+            className={
+              pathname === "/portraits" ? "text-black" : "hover:text-black"
+            }
+            href="/portraits"
+          >
             Portraits
           </Link>
-          <Link className="hover:text-black" href="/companies">
+          <Link
+            className={
+              pathname === "/companies" ? "text-black" : "hover:text-black"
+            }
+            href="/companies"
+          >
             Companies
           </Link>
         </div>
         <div className="col-start-5 md:col-start-7 col-span-2 flex flex-col">
           <div>Index</div>
-          {pathname === "/" && (
+          {(pathname === "/" ||
+            pathname === "/documentaries" ||
+            pathname === "/stories" ||
+            pathname === "/diary" ||
+            pathname === "/portraits" ||
+            pathname === "/companies") && (
             <div className="font-PPeditorialNew">
               <button
                 className={`hover:text-black ${viewMode === "list" ? "text-black" : "text-[#AAAAAA]"}`}
