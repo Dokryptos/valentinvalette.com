@@ -62,11 +62,11 @@ export const projectType = defineType({
       type: "string",
       options: {
         list: [
-          { title: "Portraits", value: "portraits" },
-          { title: "Stories", value: "stories" },
-          { title: "Companies", value: "companies" },
-          { title: "Diary", value: "diary" },
-          { title: "Documentaries", value: "documentaries" },
+          { title: "Portraits", value: "Portraits" },
+          { title: "Stories", value: "Stories" },
+          { title: "Companies", value: "Companies" },
+          { title: "Diary", value: "Diary" },
+          { title: "Documentaries", value: "Documentaries" },
         ],
       },
       validation: (rule) =>

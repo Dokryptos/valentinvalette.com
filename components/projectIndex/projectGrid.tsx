@@ -23,7 +23,7 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
   };
 
   return (
-    <div className="gap-x-3 gap-y-5 pr-5 pl-5 grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6">
+    <div className="gap-x-3 gap-y-5 scroll- pr-3 pl-3 md:pr-5 md:pl-5 grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6">
       {projectArray.map((project: ProjectType, i: number) => (
         <motion.div
           custom={i}
@@ -48,7 +48,7 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
               alt={`Grid image ${project.title}`}
             />
             <div className="pt-3">
-              <div>
+              <div className="flex justify-between">
                 <h2>{project?.title}</h2>
                 <span>{project?.year}</span>
               </div>
