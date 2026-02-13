@@ -4,7 +4,7 @@ import Project, { SanityImage } from "@/types/project";
 import { UIImageSanity } from "../ui/image/sanity";
 import Link from "next/link";
 import { useState } from "react";
-
+import Image from "next/image";
 interface ProjectListProps {
   projectArray: Project[];
 }
@@ -69,12 +69,24 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
           >
             <UIImageSanity
               asset={hoveredImage}
-              className="w-auto h-auto max-h-50 xl:max-h-112.5 xl:max-w-100 lg:max-h-100 lg:max-w-87.5 object-contain"
+              className="w-auto h-auto max-h-54 md:max-h-70 xl:max-h-70  lg:max-h-55 object-contain"
               alt=""
             />
           </Link>
         </div>
       )}
+      <div className="fixed bottom-3 left-3 md:bottom-5 md:left-5 font-SuisseIntl flex items-center">
+        <span className="text-[15px] md:text-[11px] lg:text-[15px] mr-3">
+          Next
+        </span>
+        <Image
+          src="/images/arrow-right.svg"
+          alt="Arrow right"
+          width={5}
+          height={10}
+          className="ml-2 inline-block"
+        />
+      </div>
     </div>
   );
 }

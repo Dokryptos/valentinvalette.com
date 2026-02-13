@@ -23,7 +23,7 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
   };
 
   return (
-    <div className="gap-x-3 gap-y-5 scroll- pr-3 pl-3 md:pr-5 md:pl-5 grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6">
+    <div className="gap-x-3 gap-y-5 pr-3 pl-3 md:pr-5 md:pl-5 grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 h-auto overflow-x-auto">
       {projectArray.map((project: ProjectType, i: number) => (
         <motion.div
           custom={i}
