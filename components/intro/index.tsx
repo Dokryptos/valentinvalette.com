@@ -51,7 +51,7 @@ export default function Intro() {
               : "opacity-0 transition-opacity duration-300"
           }`}
         >
-          <h1 className="font-neueGrotesk text-[#FAEEBC] desktop:text-[70px] tablet:text-[45px] text-[35px]">
+          <h1 className="font-PPeditorialNew text-[#FAEEBC] desktop:text-[70px] tablet:text-[45px] text-[35px]">
             Valentin Valette
           </h1>
         </motion.div>

@@ -23,13 +23,13 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
   };
 
   return (
-    <div className="gap-x-3 gap-y-5 pr-3 pl-3 md:pr-5 md:pl-5 grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 h-auto overflow-x-auto">
+    <div className="gap-x-3 gap-y-5 pr-3 pl-3 md:pr-5 md:pl-5 grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 h-auto overflow-x-auto scroll-auto">
       {projectArray.map((project: ProjectType, i: number) => (
         <motion.div
           custom={i}
           initial="hidden"
           animate="visible"
-          className=""
+          className="lg:text-[#AAAAAA] hover:lg:text-black transition-colors cursor-pointer"
           variants={gridAnimationVariant}
           key={project._id}
           onMouseEnter={() => setHoveredImageId(project._id)}
@@ -47,7 +47,7 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
               className="pb-3"
               alt={`Grid image ${project.title}`}
             />
-            <div className="pt-3">
+            <div className="pt-3 font-SuisseIntl text-[9px] xl:text-[12px]">
               <div className="flex justify-between">
                 <h2>{project?.title}</h2>
                 <span>{project?.year}</span>

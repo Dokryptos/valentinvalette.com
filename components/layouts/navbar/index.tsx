@@ -11,7 +11,7 @@ export default function Navbar() {
   return (
     <nav>
       <Grid className="pt-3 pr-3 pl-3 md:pr-5 md:pl-5 text-[15px] md:text-[11px] lg:text-[15px] font-SuisseIntl">
-        <div className="col-start-1 col-span-1 flex flex-col text-[#AAAAAA] text-[15px] md:text-[11px] lg:text-[15px] font-suisseIntl">
+        <div className="col-start-1 col-span-1 flex flex-col text-[#AAAAAA]">
           <Link
             className={pathname === "/" ? "text-black" : "hover:text-black"}
             href="/"
@@ -69,14 +69,14 @@ export default function Navbar() {
             pathname === "/companies") && (
             <div className="font-PPeditorialNew">
               <button
-                className={`hover:text-black ${viewMode === "list" ? "text-black" : "text-[#AAAAAA]"}`}
+                className={`hover:text-black cursor-pointer ${viewMode === "list" ? "text-black" : "text-[#AAAAAA]"}`}
                 onClick={() => setViewMode("list")}
               >
                 List
               </button>
               <span className="pr-1 pl-1 text-[#AAAAAA]">/</span>
               <button
-                className={`hover:text-black ${viewMode === "grid" ? "text-black" : "text-[#AAAAAA]"}`}
+                className={`hover:text-black cursor-pointer ${viewMode === "grid" ? "text-black" : "text-[#AAAAAA]"}`}
                 onClick={() => setViewMode("grid")}
               >
                 Grid
