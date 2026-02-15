@@ -5,5 +5,5 @@ interface ProjectProps {
   projectData: Project;
 }
 export default function ProjectPage({ projectData }: ProjectProps) {
-  return <div>Project Page</div>;
+  return <div></div>;
 }
