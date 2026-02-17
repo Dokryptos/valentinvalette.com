@@ -1,12 +1,14 @@
 "use client";
 import Grid from "@/components/ui/grid";
 import { useViewMode } from "@/context/ViewModeContext";
+import { useGridCols } from "@/context/GridColsContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const pathname = usePathname();
   const { viewMode, setViewMode } = useViewMode();
+  const { cols, setCols } = useGridCols();
 
   return (
     <nav>
@@ -67,20 +69,35 @@ export default function Navbar() {
             pathname === "/diary" ||
             pathname === "/portraits" ||
             pathname === "/companies") && (
-            <div className="font-PPeditorialNew">
-              <button
-                className={`hover:text-black cursor-pointer ${viewMode === "list" ? "text-black" : "text-[#AAAAAA]"}`}
-                onClick={() => setViewMode("list")}
-              >
-                List
-              </button>
-              <span className="pr-1 pl-1 text-[#AAAAAA]">/</span>
-              <button
-                className={`hover:text-black cursor-pointer ${viewMode === "grid" ? "text-black" : "text-[#AAAAAA]"}`}
-                onClick={() => setViewMode("grid")}
-              >
-                Grid
-              </button>
+            <div className="font-PPeditorialNew flex items-center gap-3">
+              <div className="flex gap-2">
+                <button
+                  className={`hover:text-black cursor-pointer ${viewMode === "list" ? "text-black" : "text-[#AAAAAA]"}`}
+                  onClick={() => setViewMode("list")}
+                >
+                  List
+                </button>
+                <span className="pr-1 pl-1 text-[#AAAAAA]">/</span>
+                <button
+                  className={`hover:text-black cursor-pointer ${viewMode === "grid" ? "text-black" : "text-[#AAAAAA]"}`}
+                  onClick={() => setViewMode("grid")}
+                >
+                  Grid
+                </button>
+              </div>
+              {viewMode === "grid" && (
+                <div className="flex items-center gap-2">
+                  <input
+                    type="range"
+                    min="2"
+                    max="6"
+                    step="1"
+                    value={cols}
+                    onChange={(e) => setCols(parseInt(e.target.value))}
+                    className="w-20 h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-black"
+                  />
+                </div>
+              )}
             </div>
           )}
         </div>

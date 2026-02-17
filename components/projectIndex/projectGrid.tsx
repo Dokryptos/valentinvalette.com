@@ -6,13 +6,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import type ProjectType from "@/types/project";
+import { useGridCols } from "@/context/GridColsContext";
 
 interface ProjectGridProps {
   projectArray: Project[];
 }
 
 export default function ProjectGrid({ projectArray }: ProjectGridProps) {
-  const [cols, setCols] = useState(4);
+  const { cols } = useGridCols();
 
   const [hoveredImageId, setHoveredImageId] = useState<string | null>(
     projectArray[0]?._id || null,
@@ -27,20 +28,6 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
 
   return (
     <div>
-      <div className="fixed top-10 left-1/2 flex items-center gap-6">
-        <input
-          type="range"
-          min="2"
-          max="6"
-          step="1"
-          value={cols}
-          onChange={(e) => setCols(parseInt(e.target.value))}
-          className="w-40 h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-black"
-        />
-        <span className="text-[10px] font-SuisseIntl text-black w-4">
-          {cols}
-        </span>
-      </div>
       <div
         className="gap-x-3 gap-y-5 pr-3 pl-3 md:pr-5 md:pl-5 grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 h-auto scroll-x-auto"
         style={{

@@ -94,3 +94,27 @@ export async function getCompaniesProjects(): Promise<ProjectType[]> {
   const { data } = await sanityFetch({ query: COMPANIES_QUERY });
   return data;
 }
+
+export const AWARD_QUERY = defineQuery(`*[
+  _type == "award"
+]{_id, title, slug, description } | order(orderRank)`);
+export async function getAwardsProjects(): Promise<ProjectType[]> {
+  const { data } = await sanityFetch({ query: AWARD_QUERY });
+  return data;
+}
+
+export const BOOK_QUERY = defineQuery(`*[
+  _type == "book"
+]{_id, title, slug, description } | order(orderRank)`);
+export async function getBooksProjects(): Promise<ProjectType[]> {
+  const { data } = await sanityFetch({ query: BOOK_QUERY });
+  return data;
+}
+
+export const WRITING_QUERY = defineQuery(`*[
+  _type == "writing"
+]{_id, title, slug, description } | order(orderRank)`);
+export async function getWritingProjects(): Promise<ProjectType[]> {
+  const { data } = await sanityFetch({ query: WRITING_QUERY });
+  return data;
+}

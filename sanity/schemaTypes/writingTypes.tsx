@@ -1,4 +1,4 @@
-import { defineField, defineType, defineArrayMember } from "sanity";
+import { defineField, defineType } from "sanity";
 import { ArchiveIcon } from "@sanity/icons";
 import {
   orderRankField,

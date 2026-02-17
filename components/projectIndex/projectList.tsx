@@ -5,6 +5,8 @@ import { UIImageSanity } from "../ui/image/sanity";
 import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
+import arrowLeft from "@/public/Arrow.png";
+
 interface ProjectListProps {
   projectArray: Project[];
 }
@@ -80,10 +82,10 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
           Next
         </span>
         <Image
-          src="/images/arrow-right.svg"
-          alt="Arrow right"
-          width={5}
-          height={10}
+          src={arrowLeft}
+          alt="Arrow left"
+          width={30}
+          height={20}
           className="ml-2 inline-block"
         />
       </div>

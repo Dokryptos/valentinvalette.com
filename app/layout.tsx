@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/layouts/navbar";
 import { ViewModeProvider } from "@/context/ViewModeContext";
+import { GridColsProvider } from "@/context/GridColsContext";
 import Intro from "@/components/intro";
 
 const PPEditorialNew = localFont({
@@ -45,9 +46,11 @@ export default function RootLayout({
         className={`${PPEditorialNew.variable} ${SuisseIntl.variable} antialiased`}
       >
         <ViewModeProvider>
-          <Intro />
-          <Navbar />
-          {children}
+          <GridColsProvider>
+            <Intro />
+            <Navbar />
+            {children}
+          </GridColsProvider>
         </ViewModeProvider>
       </body>
     </html>
