@@ -2,6 +2,7 @@
 import Grid from "@/components/ui/grid";
 import { useViewMode } from "@/context/ViewModeContext";
 import { useGridCols } from "@/context/GridColsContext";
+import { useResponsiveGridRange } from "@/hooks/useResponsiveGridRange";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -9,6 +10,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const { viewMode, setViewMode } = useViewMode();
   const { cols, setCols } = useGridCols();
+  const { min, max } = useResponsiveGridRange();
 
   return (
     <nav>
@@ -69,7 +71,7 @@ export default function Navbar() {
             pathname === "/diary" ||
             pathname === "/portraits" ||
             pathname === "/companies") && (
-            <div className="font-PPeditorialNew flex items-center gap-3">
+            <div className="font-PPeditorialNew flex flex-col lg:flex-row lg:items-center gap-3">
               <div className="flex gap-2">
                 <button
                   className={`hover:text-black cursor-pointer ${viewMode === "list" ? "text-black" : "text-[#AAAAAA]"}`}
@@ -89,12 +91,12 @@ export default function Navbar() {
                 <div className="flex items-center gap-2">
                   <input
                     type="range"
-                    min="2"
-                    max="6"
+                    min={min}
+                    max={max}
                     step="1"
                     value={cols}
                     onChange={(e) => setCols(parseInt(e.target.value))}
-                    className="w-20 h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-black"
+                    className="w-20 h-[1] bg-black rounded-lg appearance-none cursor-pointer accent-[#D9D9D9]"
                   />
                 </div>
               )}
