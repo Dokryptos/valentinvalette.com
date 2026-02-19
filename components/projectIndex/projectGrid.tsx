@@ -45,12 +45,7 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
             onMouseEnter={() => setHoveredImageId(project._id)}
             onMouseLeave={() => setHoveredImageId(null)}
           >
-            <Link
-              href={`/${project?.slug?.current}`}
-              onMouseEnter={() => {
-                setHoveredImageId(project._id);
-              }}
-            >
+            <Link href={`/${project?.slug?.current}`}>
               <UIImageSanity
                 key={project._id}
                 asset={project.thumbnail.asset}
@@ -60,7 +55,7 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
               <div className="font-SuisseIntl text-[9px] xl:text-[12px]">
                 <div className="flex justify-between">
                   <h2>{project?.title}</h2>
-                  <span>{project?.year}</span>
+                  <span className="tabular-nums">{project?.year}</span>
                 </div>
                 <span>{project?.category}</span>
               </div>
