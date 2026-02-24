@@ -12,56 +12,44 @@ export default function Navbar() {
   const { cols, setCols } = useGridCols();
   const { min, max } = useResponsiveGridRange();
 
+  const categories = [
+    { label: "All", href: "/" },
+    { label: "Documentaries", href: "/documentaries" },
+    { label: "Stories", href: "/stories" },
+    { label: "Diary", href: "/diary" },
+    { label: "Portraits", href: "/portraits" },
+    { label: "Companies", href: "/companies" },
+  ];
+
+  const isAboutPage = pathname.startsWith("/about");
+  const isCategoryPage = categories.some((cat) => pathname === cat.href);
+
   return (
     <nav>
-      <Grid className="pt-3 pr-3 pl-3 md:pr-5 md:pl-5 text-[15px] md:text-[11px] lg:text-[15px] font-SuisseIntl">
-        <div className="col-start-1 col-span-1 flex flex-col text-[#AAAAAA]">
-          <Link
-            className={pathname === "/" ? "text-black" : "hover:text-black"}
-            href="/"
-          >
-            All
-          </Link>
-          <Link
-            className={
-              pathname === "/documentaries" ? "text-black" : "hover:text-black"
-            }
-            href="/documentaries"
-          >
-            Documentaries
-          </Link>
-          <Link
-            className={
-              pathname === "/stories" ? "text-black" : "hover:text-black"
-            }
-            href="/stories"
-          >
-            Stories
-          </Link>
-          <Link
-            className={
-              pathname === "/diary" ? "text-black" : "hover:text-black"
-            }
-            href="/diary"
-          >
-            Diary
-          </Link>
-          <Link
-            className={
-              pathname === "/portraits" ? "text-black" : "hover:text-black"
-            }
-            href="/portraits"
-          >
-            Portraits
-          </Link>
-          <Link
-            className={
-              pathname === "/companies" ? "text-black" : "hover:text-black"
-            }
-            href="/companies"
-          >
-            Companies
-          </Link>
+      <Grid className="pt-3 pr-3 pl-3 md:pr-5 md:pl-5 text-[11px] lg:text-[15px] font-SuisseIntl">
+        <div className="col-start-1 col-span-2 flex flex-col text-[#AAAAAA]">
+          {isAboutPage ? (
+            // Si on est dans About
+            <Link href="/" className="text-black font-SuisseIntl">
+              Valentin Valette
+            </Link>
+          ) : isCategoryPage ? (
+            // Si on est sur une page de catégorie (Home, Documentaries, etc.)
+            <div className="flex flex-col text-[#AAAAAA]">
+              {categories.map((cat) => (
+                <Link
+                  key={cat.href}
+                  className={
+                    pathname === cat.href ? "text-black" : "hover:text-black"
+                  }
+                  href={cat.href}
+                >
+                  {cat.label}
+                </Link>
+              ))}
+            </div>
+          ) : null}
+          {/* Note : "null" signifie que rien ne s'affiche sur les autres pages (ex: une page projet) */}
         </div>
         <div className="col-start-5 md:col-start-7 col-span-2 flex flex-col">
           <div>Index</div>
@@ -103,8 +91,8 @@ export default function Navbar() {
             </div>
           )}
         </div>
-        <div className="col-start-10 lg:col-start-12 text-right">
-          <Link href="/about">About</Link>
+        <div className="col-start-8 md:col-start-10 lg:col-start-12 text-right">
+          <Link href="/about/biographie">About</Link>
         </div>
       </Grid>
     </nav>

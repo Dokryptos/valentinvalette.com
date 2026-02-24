@@ -27,9 +27,9 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <div
-        className="gap-x-3 gap-y-5 pr-3 pl-3 md:pr-5 md:pl-5 grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 h-auto scroll-x-auto"
+        className="gap-x-3 gap-y-5 pr-3 pl-3 md:pr-5 md:pl-5 grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 h-auto"
         style={{
           gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
         }}
