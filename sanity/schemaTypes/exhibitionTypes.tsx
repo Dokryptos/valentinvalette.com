@@ -20,8 +20,17 @@ export const exhibitionType = defineType({
       },
     },
   ],
+
   fields: [
     orderRankField({ type: "exhibition" }),
+    defineField({
+      name: "title",
+      title: "Title",
+      type: "string",
+      validation: (rule) =>
+        rule.required().error(`Required to generate a page on the website`),
+      description: "The title of the project (Obligation)",
+    }),
     defineField({
       name: "description",
       title: "Description",
@@ -29,6 +38,14 @@ export const exhibitionType = defineType({
       validation: (rule) =>
         rule.required().error(`Required to generate a page on the website`),
       description: "The description of the exhibition project (Obligation)",
+    }),
+    defineField({
+      name: "year",
+      title: "Year",
+      type: "number",
+      validation: (rule) =>
+        rule.required().error(`Required to generate a page on the website`),
+      description: "The year the project was created (Obligation)",
     }),
   ],
 });

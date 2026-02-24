@@ -12,4 +12,28 @@ export const structure: StructureResolver = (S, context) =>
         S,
         context,
       }),
+      orderableDocumentListDeskItem({
+        type: "award",
+        title: "Awards",
+        S,
+        context,
+      }),
+      orderableDocumentListDeskItem({
+        type: "exhibition",
+        title: "Exhibitions",
+        S,
+        context,
+      }),
+      orderableDocumentListDeskItem({
+        type: "writing",
+        title: "Writings",
+        S,
+        context,
+      }),
+      orderableDocumentListDeskItem({
+        type: "book",
+        title: "Books",
+        S,
+        context,
+      }),
     ]);
