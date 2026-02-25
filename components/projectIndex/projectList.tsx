@@ -24,7 +24,7 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
 
   return (
     <div className="flex items-center h-full">
-      <div className="w-full h-full overflow-x-auto overflow-y-hidden">
+      <div className="h-full overflow-x-auto overflow-y-hidden">
         <div
           className="grid gap-y-6 gap-x-3 pl-3 md:pl-5"
           style={{

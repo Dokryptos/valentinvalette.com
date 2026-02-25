@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${PPEditorialNew.variable} ${SuisseIntl.variable} antialiased`}
+        className={`${PPEditorialNew.variable} ${SuisseIntl.variable} antialiased overflow-y-auto`}
       >
         <ViewModeProvider>
           <GridColsProvider>
