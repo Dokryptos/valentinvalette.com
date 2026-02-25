@@ -7,5 +7,9 @@ interface ProjectProps {
 }
 export default function ProjectPage({ projectData }: ProjectProps) {
   console.log(projectData);
-  return <div>test</div>;
+  return (
+    <div className="w-full h-screen overflow-y-auto">
+      <h1>{projectData.title}</h1>
+    </div>
+  );
 }
