@@ -34,16 +34,22 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
           }}
         >
           {projectArray.map((project, index) => (
-            <div
+            <Link
+              href={`/${hoveredLink}`}
               className="group font-SuisseIntl flex cursor-pointer w-77.5 md:w-55 lg:w-55 xl:w-85 z-10"
               key={project._id}
+              onTouchStart={() => {
+                setHoveredImage(project.thumbnail);
+                setHoveredLink(project.slug.current);
+                setHoveredImageId(project._id);
+              }}
               onMouseEnter={() => {
                 setHoveredImage(project.thumbnail);
                 setHoveredLink(project.slug.current);
                 setHoveredImageId(project._id);
               }}
             >
-              <span className="text-[15px] md:text-[11px] lg:text-[15px] pr-3 text-gray-400 group-hover:text-black transition-colors">
+              <span className="text-[15px] md:text-[11px] lg:text-[15px] pr-3 text-gray-400 group-hover:text-black group-touch:text-black transition-colors">
                 {index < 9 ? `0${index + 1}` : index + 1}
               </span>
               <div>
@@ -59,7 +65,7 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
                   <span>{project.gallery.length} Assets</span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

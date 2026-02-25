@@ -10,7 +10,6 @@ interface ProjectProps {
 
 export default function ProjectListComponent({ projectArray }: ProjectProps) {
   const { viewMode } = useViewMode();
-  console.log(projectArray);
   return (
     <div className="pt-6">
       <div>

@@ -1,17 +1,23 @@
-import ProjectPage from "@/components/slug/projectPage";
+import ProjectSlugPage from "@/components/slug/projectSlugPage";
 import { defineQuery } from "next-sanity";
 import { notFound } from "next/navigation";
 import { sanityFetch } from "@/sanity/lib/live";
 import type projectType from "@/types/project";
 
 const PROJECT_QUERY = defineQuery(`
-  {
-    "project": *[
-      _type == "project" &&
-      slug.current == $slug
-    ][0]{
-    ...
-  },
+  *[
+    _type == "project" &&
+    slug.current == $slug
+  ][0]{
+    _id,
+    title,
+    slug,
+    category,
+    description,
+    thumbnail,
+    gallery,
+    year,
+  }
 `);
 
 export default async function SlugPage({
@@ -26,6 +32,7 @@ export default async function SlugPage({
   if (!data) {
     notFound();
   }
-  const projectData: projectType = data.project;
-  return <ProjectPage projectData={projectData} />;
+  console.log(data);
+  const projectData: projectType = data;
+  return <ProjectSlugPage projectData={projectData} />;
 }
