@@ -105,7 +105,7 @@ export async function getAwardsProjects(): Promise<ProjectType[]> {
 
 export const BOOK_QUERY = defineQuery(`*[
   _type == "book"
-]{_id, title, slug, description, year } | order(orderRank)`);
+]{_id, title, slug, description, year, thumbnail } | order(orderRank)`);
 export async function getBooksProjects(): Promise<ProjectType[]> {
   const { data } = await sanityFetch({ query: BOOK_QUERY });
   return data;
@@ -116,5 +116,13 @@ export const WRITING_QUERY = defineQuery(`*[
 ]{_id, title, slug, description, year } | order(orderRank)`);
 export async function getWritingProjects(): Promise<ProjectType[]> {
   const { data } = await sanityFetch({ query: WRITING_QUERY });
+  return data;
+}
+
+export const EXHIBITION_QUERY = defineQuery(`*[
+  _type == "exhibition"
+]{_id, title, slug, description, year } | order(orderRank)`);
+export async function getExhibitionsProjects(): Promise<ProjectType[]> {
+  const { data } = await sanityFetch({ query: EXHIBITION_QUERY });
   return data;
 }
