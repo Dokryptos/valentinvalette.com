@@ -30,9 +30,18 @@ export default function Navbar() {
 
   const isAboutPage = pathname.startsWith("/about");
   const isCategoryPage = categories.some((cat) => pathname === cat.href);
+  const isLeavingAbout = !pathname.startsWith("/about");
 
   return (
-    <nav style={{ backgroundColor }} className="transition-colors duration-300">
+    <nav
+      style={{
+        backgroundColor,
+        transition: isLeavingAbout
+          ? "background-color 0s"
+          : "background-color 0.3s ease",
+      }}
+      className="border-b border-b-transparent"
+    >
       <Grid className="pt-3 pr-3 pl-3 md:pr-5 md:pl-5 text-[11px] lg:text-[15px] font-SuisseIntl">
         <div className="col-start-1 col-span-2 flex flex-col text-[#AAAAAA]">
           {isAboutPage ? (
