@@ -5,12 +5,19 @@ import { useGridCols } from "@/context/GridColsContext";
 import { useResponsiveGridRange } from "@/hooks/useResponsiveGridRange";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { aboutPageColors, defaultAboutColor } from "@/app/about/colors";
 
 export default function Navbar() {
   const pathname = usePathname();
   const { viewMode, setViewMode } = useViewMode();
   const { cols, setCols } = useGridCols();
   const { min, max } = useResponsiveGridRange();
+
+  // Déterminer la couleur en fonction du pathname
+  const backgroundColor = pathname.startsWith("/about")
+    ? aboutPageColors[pathname as keyof typeof aboutPageColors] ||
+      defaultAboutColor
+    : "#ffffff";
 
   const categories = [
     { label: "All", href: "/" },
@@ -25,7 +32,7 @@ export default function Navbar() {
   const isCategoryPage = categories.some((cat) => pathname === cat.href);
 
   return (
-    <nav>
+    <nav style={{ backgroundColor }} className="transition-colors duration-300">
       <Grid className="pt-3 pr-3 pl-3 md:pr-5 md:pl-5 text-[11px] lg:text-[15px] font-SuisseIntl">
         <div className="col-start-1 col-span-2 flex flex-col text-[#AAAAAA]">
           {isAboutPage ? (
