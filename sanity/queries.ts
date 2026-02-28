@@ -1,6 +1,7 @@
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "@/sanity/lib/live";
 import ProjectType from "@/types/project";
+import AboutType from "@/types/about";
 import { notFound } from "next/navigation";
 
 export const INDEX_QUERY = defineQuery(`*[
@@ -98,7 +99,7 @@ export async function getCompaniesProjects(): Promise<ProjectType[]> {
 export const AWARD_QUERY = defineQuery(`*[
   _type == "award"
 ]{_id, title, slug, description, year } | order(orderRank)`);
-export async function getAwardsProjects(): Promise<ProjectType[]> {
+export async function getAwardsProjects(): Promise<AboutType[]> {
   const { data } = await sanityFetch({ query: AWARD_QUERY });
   return data;
 }
@@ -106,15 +107,15 @@ export async function getAwardsProjects(): Promise<ProjectType[]> {
 export const BOOK_QUERY = defineQuery(`*[
   _type == "book"
 ]{_id, title, slug, description, year, thumbnail } | order(orderRank)`);
-export async function getBooksProjects(): Promise<ProjectType[]> {
+export async function getBooksProjects(): Promise<AboutType[]> {
   const { data } = await sanityFetch({ query: BOOK_QUERY });
   return data;
 }
 
 export const WRITING_QUERY = defineQuery(`*[
   _type == "writing"
-]{_id, title, slug, description, year } | order(orderRank)`);
-export async function getWritingProjects(): Promise<ProjectType[]> {
+]{_id, title, slug, description, year, downloadFile } | order(orderRank)`);
+export async function getWritingProjects(): Promise<AboutType[]> {
   const { data } = await sanityFetch({ query: WRITING_QUERY });
   return data;
 }
@@ -122,7 +123,7 @@ export async function getWritingProjects(): Promise<ProjectType[]> {
 export const EXHIBITION_QUERY = defineQuery(`*[
   _type == "exhibition"
 ]{_id, title, slug, description, year } | order(orderRank)`);
-export async function getExhibitionsProjects(): Promise<ProjectType[]> {
+export async function getExhibitionsProjects(): Promise<AboutType[]> {
   const { data } = await sanityFetch({ query: EXHIBITION_QUERY });
   return data;
 }

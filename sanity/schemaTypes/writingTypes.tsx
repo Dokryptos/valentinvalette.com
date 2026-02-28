@@ -46,5 +46,14 @@ export const writingType = defineType({
         rule.required().error(`Required to generate a page on the website`),
       description: "The year the project was created (Obligation)",
     }),
+    defineField({
+      name: "downloadFile",
+      title: "Downloadable File (PDF)",
+      type: "file",
+      options: {
+        accept: "application/pdf",
+      },
+      description: "Upload the PDF that users can download",
+    }),
   ],
 });

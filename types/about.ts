@@ -6,4 +6,9 @@ export default interface AboutDescription {
   description: string;
   year: number;
   title: string;
+  downloadFile?: {
+    asset: {
+      url: string;
+    };
+  };
 }

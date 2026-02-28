@@ -108,7 +108,7 @@ export default function Navbar() {
           )}
         </div>
         <div className="col-start-8 md:col-start-10 lg:col-start-12 text-right">
-          <Link href="/about/biographie">About</Link>
+          <Link href="/about/awards">About</Link>
         </div>
       </Grid>
     </nav>

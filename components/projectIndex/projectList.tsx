@@ -22,6 +22,10 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
     projectArray[0]?.slug.current || null,
   );
 
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
+    null,
+  );
+
   return (
     <div className="flex items-center h-full">
       <div className="h-full overflow-x-auto overflow-y-hidden">
@@ -35,28 +39,33 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
         >
           {projectArray.map((project, index) => (
             <Link
-              href={`/${hoveredLink}`}
+              href={`/${project.slug.current}`}
               className="group font-SuisseIntl flex cursor-pointer w-77.5 md:w-55 lg:w-55 xl:w-85 z-10"
               key={project._id}
               onTouchStart={() => {
-                setHoveredImage(project.thumbnail);
-                setHoveredLink(project.slug.current);
-                setHoveredImageId(project._id);
+                setSelectedProjectId(project._id);
               }}
               onMouseEnter={() => {
+                setSelectedProjectId(project._id);
                 setHoveredImage(project.thumbnail);
                 setHoveredLink(project.slug.current);
                 setHoveredImageId(project._id);
               }}
             >
-              <span className="text-[15px] md:text-[11px] lg:text-[15px] pr-3 text-gray-400 group-hover:text-black group-touch:text-black transition-colors">
+              <span
+                className={`text-[15px] md:text-[11px] lg:text-[15px] pr-3 text-gray-400 group-hover:text-black transition-colors ${selectedProjectId === project._id ? "text-black" : ""}`}
+              >
                 {index < 9 ? `0${index + 1}` : index + 1}
               </span>
               <div>
-                <h2 className="font-PPeditorialNew text-[28px] md:text-[18px] lg:text-[28px] text-gray-400 group-hover:text-black transition-colors">
+                <h2
+                  className={`font-PPeditorialNew text-[28px] md:text-[18px] lg:text-[28px] text-gray-400 group-hover:text-black transition-colors ${selectedProjectId === project._id ? "text-black" : ""}`}
+                >
                   {project.title}
                 </h2>
-                <div className="text-[15px] md:text-[11px] lg:text-[15px] text-gray-400 group-hover:text-black transition-colors">
+                <div
+                  className={`text-[15px] md:text-[11px] lg:text-[15px] text-gray-400 group-hover:text-black transition-colors ${selectedProjectId === project._id ? "text-black" : ""}`}
+                >
                   <span>
                     {project.category.charAt(0).toUpperCase() +
                       project.category.slice(1)}
@@ -77,7 +86,7 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
           >
             <UIImageSanity
               asset={hoveredImage}
-              className="w-auto h-auto max-h-54 md:max-h-70 xl:max-h-70  lg:max-h-55 object-contain"
+              className="w-auto h-auto max-h-54 md:max-h-70 xl:max-h-90  lg:max-h-70 object-contain"
               alt=""
             />
           </Link>

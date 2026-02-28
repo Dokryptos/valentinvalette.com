@@ -10,12 +10,13 @@ import { useState } from "react";
 import { aboutPageColors, defaultAboutColor } from "./colors";
 
 const aboutNavigation = [
-  { label: "Biographie", href: "/about/biographie" },
   { label: "Awards", href: "/about/awards" },
   { label: "Book", href: "/about/book" },
+  { label: "Biographie", href: "/about/biographie" },
   { label: "Exhibitions", href: "/about/exhibitions" },
-  { label: "Writings", href: "/about/writings" },
   { label: "Instagram", href: "https://www.instagram.com/valentin.valette/" },
+  { label: "Newsletter", href: "/about/newsletter" },
+  { label: "Writings", href: "/about/writings" },
 ];
 
 export default function AboutLayout({
@@ -66,7 +67,7 @@ export default function AboutLayout({
                     <Image
                       src={Arrow}
                       alt="Arrow"
-                      width={15}
+                      width={30}
                       height={15}
                       className="min-w-3.75 object-contain"
                     />
