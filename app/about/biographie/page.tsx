@@ -14,7 +14,7 @@ export default function BiographiePage() {
         <Image
           src={photoProfil}
           alt="Photo de profil de Valentin Valette"
-          className="w-[170px] md:w-[360px] lg:w-[250px] xl:w-[230px] h-auto"
+          className="w-[170px] md:w-[360px] lg:w-[250px] xl:w-[0px] h-auto"
         />
       </div>
     </div>
