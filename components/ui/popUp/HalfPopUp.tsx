@@ -5,6 +5,8 @@ interface FullPagePopupProps {
   open: boolean;
   onClose: () => void;
   direction?: "left" | "right";
+  color?: string;
+  textColor?: string;
   children: React.ReactNode;
 }
 
@@ -12,6 +14,8 @@ export default function FullPagePopup({
   open,
   onClose,
   direction = "right",
+  color,
+  textColor,
   children,
 }: FullPagePopupProps) {
   useEffect(() => {
@@ -39,12 +43,19 @@ export default function FullPagePopup({
       className={`fixed inset-0 z-50 flex ${positionClass} items-center pointer-events-none`}
     >
       <div
-        className={`bg-white h-full w-full md:w-1/2 shadow-xl transition-transform duration-500 ${translateClass} pointer-events-auto relative`}
+        className={`${color || "bg-white"} h-full w-full md:w-1/2 shadow-xl transition-transform duration-500 ${translateClass} pointer-events-auto relative`}
       >
-        <button className="absolute top-4 right-4 text-xl" onClick={onClose}>
+        <button
+          className={`absolute top-4 right-4 text-xl text-${textColor || "black"}`}
+          onClick={onClose}
+        >
           ×
         </button>
-        <div className="h-full w-full flex flex-col">{children}</div>
+        <div
+          className={`h-full w-full flex flex-col text-${textColor || "black"}`}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );
