@@ -67,7 +67,7 @@ export default function Navbar() {
           ) : null}
           {/* Note : "null" signifie que rien ne s'affiche sur les autres pages (ex: une page projet) */}
         </div>
-        <div className="col-start-5 md:col-start-7 col-span-2 flex flex-col">
+        <div className="col-start-5 md:col-start-6 lg:col-start-7 lg:col-span-2 flex flex-col">
           <div>Index</div>
           {(pathname === "/" ||
             pathname === "/documentaries" ||

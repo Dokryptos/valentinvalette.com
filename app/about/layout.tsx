@@ -85,7 +85,7 @@ export default function AboutLayout({
           </nav>
         </div>
 
-        <div className="col-start-5 md:col-start-7 col-span-4 md:col-span-3 text-[11px] xl:text-[15px]">
+        <div className="col-start-5 md:col-start-6 col-span-4 md:col-span-3 text-[11px] xl:text-[15px]">
           {children}
         </div>
       </Grid>

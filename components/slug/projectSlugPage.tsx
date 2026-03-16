@@ -49,7 +49,7 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
           <p className="text-[11px] xl:text-[15px]">{projectData.category}</p>
         </div>
 
-        <div className="flex flex-col col-span-full md:col-span-4 md:col-start-7 lg:col-start-7 lg:col-span-4">
+        <div className="flex flex-col col-span-full md:col-span-4 md:col-start-6 lg:col-start-7 lg:col-span-4">
           <div className="flex items-center pt-20 lg:pt-7.5">
             {selectedImage && (
               <UIImageSanity
@@ -57,7 +57,7 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
                 alt="Selected"
                 className="object-contain px-4 md:px-0 max-h-[70vh] md:pr-4 lg:pr-0"
                 onClick={() => {
-                  setShowCarousel(false);
+                  setShowCarousel(!showCarousel);
                   setOverviewMode(false);
                 }}
               />

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import Grid from "../grid";
 
 interface FullPagePopupProps {
   open: boolean;
@@ -39,11 +40,11 @@ export default function FullPagePopup({
     direction === "right" ? "right-0 justify-end" : "left-0 justify-start";
 
   return (
-    <div
-      className={`fixed inset-0 z-50 flex ${positionClass} items-center pointer-events-none`}
+    <Grid
+      className={`fixed inset-0 z-50 flex ${positionClass} items-center pointer-events-none gap-5`}
     >
       <div
-        className={`${color || "bg-white"} h-full w-full md:w-1/2 shadow-xl transition-transform duration-500 ${translateClass} pointer-events-auto relative`}
+        className={`${color || "bg-white"} h-full col-span-8 md:col-span-5 lg:col-span-6 shadow-xl transition-transform duration-500 ${translateClass} pointer-events-auto relative`}
       >
         <button
           className={`absolute top-4 right-4 text-xl text-${textColor || "black"}`}
@@ -57,6 +58,6 @@ export default function FullPagePopup({
           {children}
         </div>
       </div>
-    </div>
+    </Grid>
   );
 }
