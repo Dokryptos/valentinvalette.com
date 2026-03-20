@@ -68,7 +68,7 @@ export default function Navbar() {
           {/* Note : "null" signifie que rien ne s'affiche sur les autres pages (ex: une page projet) */}
         </div>
         <div className="col-start-5 md:col-start-6 lg:col-start-7 lg:col-span-2 flex flex-col">
-          <div>Index</div>
+          <Link href="/">Index</Link>
           {(pathname === "/" ||
             pathname === "/documentaries" ||
             pathname === "/stories" ||
