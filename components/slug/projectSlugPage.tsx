@@ -19,7 +19,10 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const images = projectData.gallery || [];
   const selectedImage = images[selectedImageIndex];
-
+  const sharedTransition = {
+    duration: 0.6,
+    ease: [0.22, 1, 0.36, 1] as const,
+  };
   const handleCarouselClick = (index: number) => {
     setSelectedImageIndex(index);
 
@@ -46,28 +49,31 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
         </div>
 
         <motion.div
-          layout
-          className={`flex flex-col pt-20 lg:pt-7.5 transition-all duration-500 relative 
+          transition={sharedTransition}
+          className={`flex flex-col pt-20 md:pt-14 lg:pt-7.5 relative
             ${
               showCarousel
                 ? "col-span-full md:col-span-4 md:col-start-6 lg:col-start-7 lg:col-span-4"
                 : "col-span-full md:col-span-10 md:col-start-1 lg:col-start-7 lg:col-span-6"
             }`}
         >
-          <div className="flex items-start justify-center lg:justify-start w-full h-full max-h-[calc(100vh-180px)]">
+          <motion.div
+            className="flex items-start justify-start pointer-events-none"
+            style={{ originX: 0, originY: 0 }}
+          >
             {selectedImage && (
               <UIImageSanity
                 asset={selectedImage.asset}
                 alt="Selected"
                 className={`w-full h-full object-contain object-top lg:object-left cursor-pointer pointer-events-auto transition-all duration-500 ${
                   showCarousel
-                    ? "max-h-[50vh] md:max-h-[60vh]"
-                    : "max-h-[70vh] md:max-h-[75vh]"
+                    ? "max-h-[90vh] md:max-h-[60vh] lg:max-h-[50vh]"
+                    : "max-h-[90vh] md:max-h-[85vh] lg:max-h-[80vh]"
                 }`}
                 onClick={() => setShowCarousel(!showCarousel)}
               />
             )}
-          </div>
+          </motion.div>
         </motion.div>
       </Grid>
 
@@ -82,12 +88,9 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
         <div className="px-4">{projectData.description}</div>
       </HalfPopUp>
 
-      <div className="fixed bottom-0 left-0 w-full z-50 bg-white px-5 pb-5 flex flex-col justify-end pointer-events-none">
-        <div className="pointer-events-auto pt-10">
-          <motion.div
-            layout
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          >
+      <div className="fixed bottom-0 left-0 w-full z-30 bg-white px-5 pb-5 flex flex-col justify-end pointer-events-none">
+        <div className="pointer-events-auto pt-2 mt-8">
+          <motion.div layout transition={sharedTransition}>
             <Grid className="text-[11px] xl:text-[15px] w-full items-center mb-0">
               <button
                 className="col-start-1 text-left"
