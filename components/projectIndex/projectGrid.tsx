@@ -3,9 +3,7 @@
 import Project from "@/types/project";
 import { UIImageSanity } from "../ui/image/sanity";
 import Link from "next/link";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import type ProjectType from "@/types/project";
+import { motion, AnimatePresence } from "framer-motion";
 import { useGridCols } from "@/context/GridColsContext";
 
 interface ProjectGridProps {
@@ -15,54 +13,61 @@ interface ProjectGridProps {
 export default function ProjectGrid({ projectArray }: ProjectGridProps) {
   const { cols } = useGridCols();
 
-  const [hoveredImageId, setHoveredImageId] = useState<string | null>(
-    projectArray[0]?._id || null,
-  );
-  const gridAnimationVariant = {
-    hidden: { opacity: 0 },
-    visible: (i: number) => ({
-      opacity: 1,
-      transition: { delay: i * 0.2, duration: 1 },
-    }),
+  const springTransition = {
+    type: "spring",
+    stiffness: 400,
+    damping: 40,
+    mass: 1,
   };
 
   return (
-    <div className="w-full h-screen overflow-y-auto">
-      <div
-        className="gap-x-3 gap-y-5 pr-3 pl-3 md:pr-5 md:pl-5 grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 h-auto"
+    <div className="w-full min-h-screen">
+      <motion.div
+        layout
+        transition={springTransition}
+        className="grid gap-x-3 gap-y-10 px-3 md:px-5 h-full overflow-y-auto"
         style={{
           gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
         }}
       >
-        {projectArray.map((project: ProjectType, i: number) => (
-          <motion.div
-            custom={i}
-            initial="hidden"
-            animate="visible"
-            className="lg:text-[#AAAAAA] hover:lg:text-black transition-colors cursor-pointer"
-            variants={gridAnimationVariant}
-            key={project._id}
-            onMouseEnter={() => setHoveredImageId(project._id)}
-            onMouseLeave={() => setHoveredImageId(null)}
-          >
-            <Link href={`/${project?.slug?.current}`}>
-              <UIImageSanity
-                key={project._id}
-                asset={project.thumbnail.asset}
-                className="pb-3"
-                alt={`Grid image ${project.title}`}
-              />
-              <div className="font-SuisseIntl text-[9px] xl:text-[12px]">
-                <div className="flex justify-between">
-                  <h2>{project?.title}</h2>
-                  <span className="tabular-nums">{project?.year}</span>
+        <AnimatePresence mode="popLayout">
+          {projectArray.map((project, i) => (
+            <motion.div
+              key={project._id}
+              layout
+              initial={{ opacity: 0, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{
+                delay: i * 0.05,
+                opacity: { duration: 0.5 },
+                layout: springTransition,
+              }}
+              className="group cursor-pointer"
+            >
+              <Link href={`/${project?.slug?.current}`} className="block">
+                <div className="relative overflow-hidden mb-3">
+                  <UIImageSanity
+                    asset={project.thumbnail.asset}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <span>{project?.category}</span>
-              </div>
-            </Link>
-          </motion.div>
-        ))}
-      </div>
+
+                <div className="font-SuisseIntl text-[9px] xl:text-[12px] text-[#AAAAAA] group-hover:text-black transition-colors duration-300">
+                  <div className="flex justify-between items-baseline">
+                    <h2 className="tracking-wider">{project?.title}</h2>
+                    <span className="tabular-nums opacity-60">
+                      {project?.year}
+                    </span>
+                  </div>
+                  <span>{project?.category}</span>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </div>
   );
 }
