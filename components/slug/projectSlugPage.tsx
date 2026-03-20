@@ -84,12 +84,16 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
         color="bg-[#998D77]"
         textColor="[#FAEEBC]"
       >
-        <h2 className="p-4 pb-6">{projectData.title}</h2>
-        <div className="px-4">{projectData.description}</div>
+        <h2 className="p-4 md:p-5 xl:p-6 pb-6 text-[11px] xl:text-[15px] font-SuisseIntl">
+          {projectData.title}
+        </h2>
+        <div className="px-4 md:px-5 xl:px-6 whitespace-pre-wrap font-SuisseIntl overflow-y-auto text-[11px] xl:text-[15px]">
+          {projectData.description}
+        </div>
       </HalfPopUp>
 
       <div className="fixed bottom-0 left-0 w-full z-30 bg-white px-5 pb-5 flex flex-col justify-end pointer-events-none">
-        <div className="pointer-events-auto pt-2 mt-8">
+        <div className="pointer-events-auto pt-2 mt-2">
           <motion.div layout transition={sharedTransition}>
             <Grid className="text-[11px] xl:text-[15px] w-full items-center mb-0">
               <button

@@ -44,7 +44,7 @@ export default function FullPagePopup({
       className={`fixed inset-0 z-50 flex ${positionClass} items-center pointer-events-none gap-5`}
     >
       <div
-        className={`${color || "bg-white"} h-full col-span-8 md:col-span-5 lg:col-span-6 shadow-xl transition-transform duration-500 ${translateClass} pointer-events-auto relative`}
+        className={`${color || "bg-white"} h-full overflow-y-auto col-span-8 md:col-span-5 lg:col-span-6 shadow-xl transition-transform duration-500 ${translateClass} pointer-events-auto relative`}
       >
         <button
           className={`absolute top-4 right-4 text-xl text-${textColor || "black"}`}
@@ -53,7 +53,7 @@ export default function FullPagePopup({
           ×
         </button>
         <div
-          className={`h-full w-full flex flex-col text-${textColor || "black"}`}
+          className={`flex flex-col overflow-y-auto pb-10 text-${textColor || "black"}`}
         >
           {children}
         </div>
