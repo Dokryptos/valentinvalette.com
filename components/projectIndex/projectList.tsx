@@ -14,9 +14,6 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
   const [hoveredImage, setHoveredImage] = useState<SanityImage | null>(
     projectArray[0]?.thumbnail || null,
   );
-  const [hoveredImageId, setHoveredImageId] = useState<string | null>(
-    projectArray[0]?._id || null,
-  );
 
   const [hoveredLink, setHoveredLink] = useState<string | null>(
     projectArray[0]?.slug.current || null,
@@ -49,7 +46,6 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
                 setSelectedProjectId(project._id);
                 setHoveredImage(project.thumbnail);
                 setHoveredLink(project.slug.current);
-                setHoveredImageId(project._id);
               }}
             >
               <span

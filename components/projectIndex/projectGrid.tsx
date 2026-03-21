@@ -14,7 +14,7 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
   const { cols } = useGridCols();
 
   const springTransition = {
-    type: "spring",
+    type: "spring" as const,
     stiffness: 400,
     damping: 40,
     mass: 1,
