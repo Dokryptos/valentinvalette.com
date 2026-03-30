@@ -47,7 +47,7 @@ export default function FullPagePopup({
         className={`${color || "bg-white"} h-full overflow-y-auto col-span-8 md:col-span-5 lg:col-span-6 shadow-xl transition-transform duration-500 ${translateClass} pointer-events-auto relative`}
       >
         <button
-          className={`absolute top-4 right-4 text-xl text-${textColor || "black"}`}
+          className={`absolute top-4 right-4 text-xl text-${textColor || "black"} p-2 cursor-pointer`}
           onClick={onClose}
         >
           ×

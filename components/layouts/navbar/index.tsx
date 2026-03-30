@@ -98,8 +98,11 @@ export default function Navbar() {
                     min={min}
                     max={max}
                     step="1"
-                    value={cols}
-                    onChange={(e) => setCols(parseInt(e.target.value))}
+                    value={max + min - cols}
+                    onChange={(e) => {
+                      const sliderValue = parseInt(e.target.value);
+                      setCols(max + min - sliderValue);
+                    }}
                     className="w-20 h-[1] bg-black rounded-lg appearance-none cursor-pointer accent-[#D9D9D9]"
                   />
                 </div>

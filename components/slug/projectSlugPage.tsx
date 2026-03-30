@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import type Project from "@/types/project";
 import { UIImageSanity } from "../ui/image/sanity";
 import Grid from "../ui/grid";
@@ -23,6 +23,7 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
     duration: 0.6,
     ease: [0.22, 1, 0.36, 1] as const,
   };
+
   const handleCarouselClick = (index: number) => {
     setSelectedImageIndex(index);
 
@@ -37,6 +38,22 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
       }
     }
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        handleCarouselClick((selectedImageIndex + 1) % images.length);
+      } else if (e.key === "ArrowLeft") {
+        handleCarouselClick(
+          (selectedImageIndex - 1 + images.length) % images.length,
+        );
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedImageIndex, images.length, showPopup]);
 
   return (
     <>
