@@ -2,7 +2,6 @@ import { getWritingProjects } from "@/sanity/queries";
 
 export default async function WritingsPage({}) {
   const writings = await getWritingProjects();
-  console.log(writings[0]?.downloadFile);
   return (
     <div>
       {writings.map((writing) => {
