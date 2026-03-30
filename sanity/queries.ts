@@ -114,7 +114,7 @@ export async function getBooksProjects(): Promise<AboutType[]> {
 
 export const WRITING_QUERY = defineQuery(`*[
   _type == "writing"
-]{_id, title, slug, description, year, downloadFile } | order(orderRank)`);
+]{_id, title, slug, description, year, downloadFile.asset } | order(orderRank)`);
 export async function getWritingProjects(): Promise<AboutType[]> {
   const { data } = await sanityFetch({ query: WRITING_QUERY });
   return data;

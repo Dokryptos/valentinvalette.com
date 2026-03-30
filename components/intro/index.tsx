@@ -25,7 +25,7 @@ export default function Intro() {
       const timerBg = setTimeout(() => {
         setIsVisibleBg(false);
         sessionStorage.setItem("hasSeenH1Animate", "true");
-      }, 1500);
+      }, 2000);
 
       return () => {
         clearTimeout(timerBg);
@@ -42,7 +42,7 @@ export default function Intro() {
         style={{ backgroundColor: randomBg }}
         initial={{ x: 0 }}
         animate={{ x: "100%" }}
-        transition={{ duration: 0.5, delay: 1, ease: "easeOut" }}
+        transition={{ duration: 0.5, delay: 1.5, ease: "easeOut" }}
       >
         <motion.div
           className={`fixed inset-0 flex items-center justify-center ${

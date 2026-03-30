@@ -56,10 +56,8 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
 
                 <div className="font-SuisseIntl text-[9px] xl:text-[12px] text-[#AAAAAA] group-hover:text-black transition-colors duration-300">
                   <div className="flex justify-between items-baseline">
-                    <h2 className="tracking-wider">{project?.title}</h2>
-                    <span className="tabular-nums opacity-60">
-                      {project?.year}
-                    </span>
+                    <h2>{project?.title}</h2>
+                    <span>{project?.year}</span>
                   </div>
                   <span>{project?.category}</span>
                 </div>
