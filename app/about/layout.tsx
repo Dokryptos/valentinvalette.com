@@ -6,7 +6,7 @@ import Grid from "@/components/ui/grid";
 import Image from "next/image";
 import Arrow from "@/public/Arrow.png";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { aboutPageColors, defaultAboutColor } from "./colors";
 
 const aboutNavigation = [
@@ -30,6 +30,15 @@ export default function AboutLayout({
     aboutPageColors[pathname as keyof typeof aboutPageColors] ||
     defaultAboutColor;
 
+  useEffect(() => {
+    // On applique la couleur au body pour l'overscroll Safari/Mobile
+    document.body.style.backgroundColor = backgroundColor;
+    document.body.style.transition = "background-color 0.3s ease";
+
+    return () => {
+      document.body.style.backgroundColor = "#ffffff";
+    };
+  }, [backgroundColor]);
   return (
     <div
       style={{
