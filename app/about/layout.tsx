@@ -31,14 +31,18 @@ export default function AboutLayout({
     defaultAboutColor;
 
   useEffect(() => {
-    // On applique la couleur au body pour l'overscroll Safari/Mobile
-    document.body.style.backgroundColor = backgroundColor;
-    document.body.style.transition = "background-color 0.3s ease";
+    // Met à jour la couleur de la barre d'état mobile
+    let metaThemeColor = document.querySelector('meta[name="theme-color"]');
 
-    return () => {
-      document.body.style.backgroundColor = "#ffffff";
-    };
+    if (!metaThemeColor) {
+      metaThemeColor = document.createElement("meta");
+      (metaThemeColor as HTMLMetaElement).name = "theme-color";
+      document.head.appendChild(metaThemeColor);
+    }
+
+    metaThemeColor.setAttribute("content", backgroundColor);
   }, [backgroundColor]);
+
   return (
     <div
       style={{
