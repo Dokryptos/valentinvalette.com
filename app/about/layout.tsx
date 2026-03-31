@@ -31,16 +31,14 @@ export default function AboutLayout({
     defaultAboutColor;
 
   useEffect(() => {
-    // Met à jour la couleur de la barre d'état mobile
-    let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    const root = document.documentElement;
+    root.style.backgroundColor = backgroundColor;
+    document.body.style.backgroundColor = backgroundColor;
 
-    if (!metaThemeColor) {
-      metaThemeColor = document.createElement("meta");
-      (metaThemeColor as HTMLMetaElement).name = "theme-color";
-      document.head.appendChild(metaThemeColor);
-    }
-
-    metaThemeColor.setAttribute("content", backgroundColor);
+    return () => {
+      root.style.backgroundColor = "#ffffff";
+      document.body.style.backgroundColor = "#ffffff";
+    };
   }, [backgroundColor]);
 
   return (

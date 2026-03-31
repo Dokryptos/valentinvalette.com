@@ -42,17 +42,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${PPEditorialNew.variable} ${SuisseIntl.variable} antialiased overflow-y-auto`}
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover"
       >
-        <ViewModeProvider>
-          <GridColsProvider>
-            <Intro />
-            <Navbar />
-            {children}
-          </GridColsProvider>
-        </ViewModeProvider>
-      </body>
+        <body
+          className={`${PPEditorialNew.variable} ${SuisseIntl.variable} antialiased overflow-y-auto`}
+        >
+          <ViewModeProvider>
+            <GridColsProvider>
+              <Intro />
+              <Navbar />
+              {children}
+            </GridColsProvider>
+          </ViewModeProvider>
+        </body>
+      </meta>
     </html>
   );
 }
