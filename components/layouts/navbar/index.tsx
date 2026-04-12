@@ -6,6 +6,7 @@ import { useResponsiveGridRange } from "@/hooks/useResponsiveGridRange";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { aboutPageColors, defaultAboutColor } from "@/app/about/colors";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -13,7 +14,6 @@ export default function Navbar() {
   const { cols, setCols } = useGridCols();
   const { min, max } = useResponsiveGridRange();
 
-  // Déterminer la couleur en fonction du pathname
   const backgroundColor = pathname.startsWith("/about")
     ? aboutPageColors[pathname as keyof typeof aboutPageColors] ||
       defaultAboutColor
@@ -32,13 +32,27 @@ export default function Navbar() {
   const isCategoryPage = categories.some((cat) => pathname === cat.href);
   const isLeavingAbout = !pathname.startsWith("/about");
 
+  const [isInitialRender, setIsInitialRender] = useState(true);
+
+  useEffect(() => {
+    // Une fois monté, on attend un petit délai ou le prochain cycle pour autoriser les transitions
+    const timer = setTimeout(() => {
+      setIsInitialRender(false);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const transitionStyle = isInitialRender
+    ? "none"
+    : isLeavingAbout
+      ? "background-color 0s ease"
+      : "background-color 0.3s ease";
+
   return (
     <nav
       style={{
         backgroundColor,
-        transition: isLeavingAbout
-          ? "background-color 0s ease"
-          : "background-color 0.3s ease",
+        transition: transitionStyle,
       }}
       className="border-b border-b-transparent"
     >
