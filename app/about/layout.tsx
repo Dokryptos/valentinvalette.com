@@ -29,23 +29,21 @@ export default function AboutLayout({
   const backgroundColor =
     aboutPageColors[pathname as keyof typeof aboutPageColors] ||
     defaultAboutColor;
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const root = document.documentElement;
-    root.style.backgroundColor = backgroundColor;
-    document.body.style.backgroundColor = backgroundColor;
-
-    return () => {
-      root.style.backgroundColor = "#ffffff";
-      document.body.style.backgroundColor = "#ffffff";
-    };
-  }, [backgroundColor]);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+    console.log("Mounted, background color should transition now");
+  }, []);
 
   return (
     <div
       style={{
         backgroundColor,
-        transition: "background-color 0.3s ease",
+        transition: mounted
+          ? "background-color 0.3s ease"
+          : "background-color 0s ease",
       }}
       className="min-h-screen"
     >

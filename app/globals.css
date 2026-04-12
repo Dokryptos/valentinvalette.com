@@ -19,7 +19,8 @@ body {
   -webkit-user-select: none;
   touch-action: manipulation;
   user-select: none;
-  background-color: #ffffff;
+  background-color: #f8f8f8;
+  transition: background-color 0.3s ease;
   color: inherit;
   margin: 0;
   padding: 0;

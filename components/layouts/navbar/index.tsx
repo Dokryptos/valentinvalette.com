@@ -37,7 +37,7 @@ export default function Navbar() {
       style={{
         backgroundColor,
         transition: isLeavingAbout
-          ? "background-color 0s"
+          ? "background-color 0s ease"
           : "background-color 0.3s ease",
       }}
       className="border-b border-b-transparent"
@@ -45,12 +45,10 @@ export default function Navbar() {
       <Grid className="pt-3 pr-3 pl-3 md:pr-5 md:pl-5 text-[11px] lg:text-[15px] font-SuisseIntl">
         <div className="col-start-1 col-span-2 flex flex-col text-[#AAAAAA]">
           {isAboutPage ? (
-            // Si on est dans About
             <Link href="/" className="text-black font-SuisseIntl">
               Valentin Valette
             </Link>
           ) : isCategoryPage ? (
-            // Si on est sur une page de catégorie (Home, Documentaries, etc.)
             <div className="flex flex-col text-[#AAAAAA]">
               {categories.map((cat) => (
                 <Link

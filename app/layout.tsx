@@ -45,19 +45,18 @@ export default function RootLayout({
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, viewport-fit=cover"
+      />
+      <body
+        className={`${PPEditorialNew.variable} ${SuisseIntl.variable} antialiased overflow-y-auto`}
       >
-        <body
-          className={`${PPEditorialNew.variable} ${SuisseIntl.variable} antialiased overflow-y-auto`}
-        >
-          <ViewModeProvider>
-            <GridColsProvider>
-              <Intro />
-              <Navbar />
-              {children}
-            </GridColsProvider>
-          </ViewModeProvider>
-        </body>
-      </meta>
+        <ViewModeProvider>
+          <GridColsProvider>
+            <Intro />
+            <Navbar />
+            {children}
+          </GridColsProvider>
+        </ViewModeProvider>
+      </body>
     </html>
   );
 }
