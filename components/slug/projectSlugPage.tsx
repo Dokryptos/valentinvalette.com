@@ -109,7 +109,7 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
         </div>
       </HalfPopUp>
 
-      <div className="fixed bottom-0 left-0 w-full z-30 bg-white px-5 pb-5 flex flex-col justify-end pointer-events-none font-SuisseIntl">
+      <div className="fixed bottom-0 left-0 w-full z-30 bg-white px-3 md:px-5 pb-5 flex flex-col justify-end pointer-events-none font-SuisseIntl">
         <div className="pointer-events-auto pt-2 mt-2">
           <motion.div layout transition={sharedTransition}>
             <Grid className="text-[11px] xl:text-[15px] w-full items-center mb-0">

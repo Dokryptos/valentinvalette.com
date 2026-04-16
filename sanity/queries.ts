@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 export const INDEX_QUERY = defineQuery(`*[
   _type == "project"
   && defined(slug.current)
-]{_id, title, slug, thumbnail, gallery, category, year, description } | order(orderRank)`);
+]{_id, title, slug, thumbnail, gallery, category, year, description, orderRank } | order(orderRank)`);
 
 // Fonction pour récupérer les projets (Serveur)
 export async function getAllProjects(): Promise<ProjectType[]> {
@@ -26,7 +26,7 @@ export const INDEX_PROJECT_QUERY = defineQuery(`
 "projectArray": *[
   _type == "project"
   && defined(slug.current)
-] | order(orderRank) {_id, title, slug, description, thumbnail, gallery, category, details, shortTitle, year }
+] | order(orderRank) {_id, title, slug, description, thumbnail, gallery, category, details, shortTitle, year, orderRank }
 }
 `);
 
@@ -45,7 +45,7 @@ export const DOCUMENTARIES_QUERY = defineQuery(`*[
   _type == "project"
   && category == "Documentaries"
   && defined(slug.current)
-]{_id, title, slug, thumbnail, gallery, category, year, description } | order(orderRank)`);
+]{_id, title, slug, thumbnail, gallery, category, year, description, orderRank } | order(orderRank)`);
 
 export async function getDocumentariesProjects(): Promise<ProjectType[]> {
   const { data } = await sanityFetch({ query: DOCUMENTARIES_QUERY });
@@ -56,7 +56,7 @@ export const STORIES_QUERY = defineQuery(`*[
   _type == "project"
   && category == "Stories"
   && defined(slug.current)
-]{_id, title, slug, thumbnail, gallery, category, year, description } | order(orderRank)`);
+]{_id, title, slug, thumbnail, gallery, category, year, description, orderRank } | order(orderRank)`);
 
 export async function getStoriesProjects(): Promise<ProjectType[]> {
   const { data } = await sanityFetch({ query: STORIES_QUERY });

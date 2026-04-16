@@ -19,4 +19,5 @@ export default interface Project {
   description: string;
   year: number;
   gallery: SanityImage[];
+  orderRank?: string;
 }
