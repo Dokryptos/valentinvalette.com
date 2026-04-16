@@ -106,7 +106,7 @@ export async function getAwardsProjects(): Promise<AboutType[]> {
 
 export const BOOK_QUERY = defineQuery(`*[
   _type == "book"
-]{_id, title, slug, description, year, thumbnail } | order(orderRank)`);
+]{_id, title, slug, description, contenu } | order(orderRank)`);
 export async function getBooksProjects(): Promise<AboutType[]> {
   const { data } = await sanityFetch({ query: BOOK_QUERY });
   return data;

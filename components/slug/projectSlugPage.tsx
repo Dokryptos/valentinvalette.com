@@ -57,7 +57,7 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
 
   return (
     <>
-      <Grid className="min-h-screen overflow-hidden font-SuisseIntl w-full px-5">
+      <Grid className="min-h-screen overflow-hidden font-SuisseIntl w-full px-3 md:px-5">
         <div className="fixed top-11 md:top-4 left-5 z-30 col-span-full md:col-span-4 ">
           <h1 className="text-[25px] xl:text-[35px] font-PPeditorialNew">
             {projectData.title}

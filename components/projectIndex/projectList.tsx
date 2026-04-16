@@ -3,7 +3,7 @@
 import Project, { SanityImage } from "@/types/project";
 import { UIImageSanity } from "../ui/image/sanity";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import arrowLeft from "@/public/Arrow.png";
 
@@ -23,9 +23,42 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
     null,
   );
 
+  const [showArrow, setShowArrow] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkScrollNeeded = () => {
+      if (!scrollContainerRef.current) return;
+
+      const container = scrollContainerRef.current;
+      const hasOverflow = container.scrollWidth > container.clientWidth;
+
+      // Thresholds based on screen size
+      const width = window.innerWidth;
+      let threshold = 17; // desktop default
+
+      if (width < 768) {
+        threshold = 5; // mobile
+      } else if (width < 1024) {
+        threshold = 13; // tablet
+      }
+
+      const shouldShow = hasOverflow || projectArray.length > threshold;
+      setShowArrow(shouldShow);
+    };
+
+    checkScrollNeeded();
+    window.addEventListener("resize", checkScrollNeeded);
+
+    return () => window.removeEventListener("resize", checkScrollNeeded);
+  }, [projectArray.length]);
+
   return (
     <div className="flex items-center h-full">
-      <div className="h-full overflow-x-auto overflow-y-hidden">
+      <div
+        ref={scrollContainerRef}
+        className="h-full overflow-x-auto overflow-y-hidden"
+      >
         <div
           className="grid gap-y-6 gap-x-3 pl-3 md:pl-5"
           style={{
@@ -88,18 +121,20 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
           </Link>
         </div>
       )}
-      <div className="fixed bottom-3 left-3 md:bottom-5 md:left-5 font-SuisseIntl flex items-center">
-        <span className="text-[15px] md:text-[11px] lg:text-[15px] mr-3">
-          Next
-        </span>
-        <Image
-          src={arrowLeft}
-          alt="Arrow left"
-          width={30}
-          height={20}
-          className="ml-2 inline-block"
-        />
-      </div>
+      {showArrow && (
+        <div className="fixed bottom-3 left-3 md:bottom-5 md:left-5 font-SuisseIntl flex items-center">
+          <span className="text-[15px] md:text-[11px] lg:text-[15px] mr-3">
+            Next
+          </span>
+          <Image
+            src={arrowLeft}
+            alt="Arrow left"
+            width={30}
+            height={20}
+            className="ml-2 inline-block"
+          />
+        </div>
+      )}
     </div>
   );
 }

@@ -32,27 +32,25 @@ export default function Navbar() {
   const isCategoryPage = categories.some((cat) => pathname === cat.href);
   const isLeavingAbout = !pathname.startsWith("/about");
 
-  const [isInitialRender, setIsInitialRender] = useState(true);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    // Une fois monté, on attend un petit délai ou le prochain cycle pour autoriser les transitions
-    const timer = setTimeout(() => {
-      setIsInitialRender(false);
-    }, 100);
-    return () => clearTimeout(timer);
+    const timer = requestAnimationFrame(() => {
+      setIsReady(true);
+    });
+    return () => cancelAnimationFrame(timer);
   }, []);
 
-  const transitionStyle = isInitialRender
-    ? "none"
-    : isLeavingAbout
-      ? "background-color 0s ease"
-      : "background-color 0.3s ease";
-
+  const getTransition = () => {
+    if (!isReady) return "none";
+    if (isLeavingAbout) return "background-color 0s ease";
+    return "background-color 0.3s ease";
+  };
   return (
     <nav
       style={{
         backgroundColor,
-        transition: transitionStyle,
+        transition: getTransition(),
       }}
       className="border-b border-b-transparent"
     >

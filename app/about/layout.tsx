@@ -6,7 +6,7 @@ import Grid from "@/components/ui/grid";
 import Image from "next/image";
 import Arrow from "@/public/Arrow.png";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { aboutPageColors, defaultAboutColor } from "./colors";
 
 const aboutNavigation = [
@@ -29,21 +29,12 @@ export default function AboutLayout({
   const backgroundColor =
     aboutPageColors[pathname as keyof typeof aboutPageColors] ||
     defaultAboutColor;
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMounted(true);
-    console.log("Mounted, background color should transition now");
-  }, []);
 
   return (
     <div
       style={{
         backgroundColor,
-        transition: mounted
-          ? "background-color 0.3s ease"
-          : "background-color 0s ease",
+        transition: "background-color 0.3s ease",
       }}
       className="min-h-screen"
     >
