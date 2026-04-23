@@ -1,6 +1,7 @@
 import { getBooksProjects } from "@/sanity/queries";
 import BooksClient from "@/components/book/BooksClient";
 export const dynamic = "force-dynamic";
+export const revalidate = 30;
 
 export default async function BooksPage() {
   const books = await getBooksProjects();

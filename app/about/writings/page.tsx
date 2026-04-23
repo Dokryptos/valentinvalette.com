@@ -1,5 +1,6 @@
 import { getWritingProjects } from "@/sanity/queries";
 export const dynamic = "force-dynamic";
+export const revalidate = 30;
 
 export default async function WritingsPage({}) {
   const writings = await getWritingProjects();
