@@ -8,6 +8,8 @@ import Arrow from "@/public/Arrow.png";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { aboutPageColors, defaultAboutColor } from "./colors";
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
 
 const aboutNavigation = [
   { label: "Awards", href: "/about/awards" },

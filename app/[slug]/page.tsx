@@ -4,6 +4,9 @@ import { notFound } from "next/navigation";
 import { sanityFetch } from "@/sanity/lib/live";
 import type projectType from "@/types/project";
 
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
 const PROJECT_QUERY = defineQuery(`
   *[
     _type == "project" &&
