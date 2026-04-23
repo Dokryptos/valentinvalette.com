@@ -58,7 +58,7 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
   return (
     <>
       <Grid className="min-h-screen overflow-hidden font-SuisseIntl w-full px-3 md:px-5">
-        <div className="fixed top-11 md:top-4 left-5 z-30 col-span-full md:col-span-4 ">
+        <div className="fixed top-11 md:top-4 left-3 md:left-5 z-30 col-span-full md:col-span-4 ">
           <h1 className="text-[25px] xl:text-[35px] font-PPeditorialNew">
             {projectData.title}
           </h1>
@@ -84,8 +84,8 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
                 alt="Selected"
                 className={`w-full h-full object-contain object-top lg:object-left cursor-pointer pointer-events-auto transition-all duration-500 ${
                   showCarousel
-                    ? "max-h-[90vh] md:max-h-[60vh] lg:max-h-[50vh]"
-                    : "max-h-[90vh] md:max-h-[85vh] lg:max-h-[80vh]"
+                    ? "max-h-[80vh] md:max-h-[60vh] lg:max-h-[50vh]"
+                    : "max-h-[80vh] md:max-h-[85vh] lg:max-h-[80vh]"
                 }`}
                 onClick={() => setShowCarousel(!showCarousel)}
               />
@@ -101,7 +101,7 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
         color="bg-[#998D77]"
         textColor="[#FAEEBC]"
       >
-        <h2 className="p-4 md:p-5 xl:p-6 pb-6 text-[11px] xl:text-[15px] font-SuisseIntl">
+        <h2 className="p-3 md:p-5 xl:p-6 pb-6 text-[11px] xl:text-[15px] font-SuisseIntl">
           {projectData.title}
         </h2>
         <div className="px-4 md:px-5 xl:px-6 whitespace-pre-wrap font-SuisseIntl overflow-y-auto text-[11px] xl:text-[15px]">

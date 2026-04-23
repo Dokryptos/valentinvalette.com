@@ -36,15 +36,14 @@ export default function FullPagePopup({
         ? "translate-x-0"
         : "-translate-x-full";
 
-  const positionClass =
-    direction === "right" ? "right-0 justify-end" : "left-0 justify-start";
+  const positionClass = direction === "right" ? "right-0" : "left-0";
 
   return (
     <Grid
-      className={`fixed inset-0 z-50 flex ${positionClass} items-center pointer-events-none gap-5`}
+      className={`fixed inset-0 z-80 flex ${positionClass} ${direction === "right" ? "justify-end" : "justify-start"} items-center pointer-events-none gap-5`}
     >
       <div
-        className={`${color || "bg-white"} h-full overflow-y-auto col-span-8 md:col-span-5 lg:col-span-6 shadow-xl transition-transform duration-500 ${translateClass} pointer-events-auto relative`}
+        className={`${color || "bg-white"}  h-full overflow-y-auto col-span-8 md:col-span-5 lg:col-span-6 shadow-xl transition-transform duration-500 ${translateClass} pointer-events-auto relative`}
       >
         <button
           className={`absolute top-4 right-4 text-xl text-${textColor || "black"} p-2 cursor-pointer`}
