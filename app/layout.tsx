@@ -47,7 +47,7 @@ export default function RootLayout({
         content="width=device-width, initial-scale=1, viewport-fit=cover"
       />
       <body
-        className={`${PPEditorialNew.variable} ${SuisseIntl.variable} antialiased overflow-y-auto`}
+        className={`${PPEditorialNew.variable} ${SuisseIntl.variable} antialiased overflow-y-auto bg-[#ffffff]`}
       >
         <ViewModeProvider>
           <GridColsProvider>
