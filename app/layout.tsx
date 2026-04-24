@@ -33,6 +33,7 @@ const SuisseIntl = localFont({
 export const metadata: Metadata = {
   title: "Valentin Valette",
   description: "Valentin valette's personal website.",
+  themeColor: "#000000",
 };
 
 export default function RootLayout({
@@ -47,7 +48,7 @@ export default function RootLayout({
         content="width=device-width, initial-scale=1, viewport-fit=cover"
       />
       <body
-        className={`${PPEditorialNew.variable} ${SuisseIntl.variable} antialiased overflow-y-auto bg-[#ffffff]`}
+        className={`${PPEditorialNew.variable} ${SuisseIntl.variable} bg-black antialiased overflow-y-auto`}
       >
         <ViewModeProvider>
           <GridColsProvider>
