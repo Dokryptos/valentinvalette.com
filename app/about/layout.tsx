@@ -36,7 +36,7 @@ export default function AboutLayout({
         backgroundColor,
         transition: "background-color 0.3s ease",
       }}
-      className="min-h-screen"
+      className="min-h-dvh"
     >
       <Grid className="pt-9 pr-3 pl-3 md:pr-5 md:pl-5">
         <div className="col-start-1 col-span-4 sticky h-fit font-SuisseIntl">
