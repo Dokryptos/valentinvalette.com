@@ -37,19 +37,22 @@ export default function Intro() {
 
   return (
     <div className="fixed inset-0 z-50 pointer-events-none">
+      {/* conteneur fixed TRANSPARENT */}
       <motion.div
         className="fixed inset-0 z-45"
-        style={{ backgroundColor: randomBg }}
+        style={{ backgroundColor: "transparent" }} // plus de randomBg ici
         initial={{ x: 0 }}
         animate={{ x: "100%" }}
         transition={{ duration: 0.5, delay: 1.5, ease: "easeOut" }}
       >
+        {/* overlay interne qui prend la couleur, mais sans être fixed top-level */}
         <motion.div
-          className={`fixed inset-0 flex items-center justify-center ${
+          className={`h-full w-full flex items-center justify-center ${
             isVisibleBg
               ? "opacity-100"
               : "opacity-0 transition-opacity duration-300"
           }`}
+          style={{ backgroundColor: randomBg }} // couleur ici
         >
           <h1 className="font-PPeditorialNew text-[#FAEEBC] desktop:text-[70px] tablet:text-[45px] text-[35px]">
             Valentin Valette
