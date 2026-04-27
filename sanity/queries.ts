@@ -67,7 +67,7 @@ export const DIARY_QUERY = defineQuery(`*[
   _type == "project"
   && category == "Diary"
   && defined(slug.current)
-]{_id, title, slug, thumbnail, gallery, category, year, description } | order(orderRank)`);
+]{_id, title, slug, thumbnail, gallery, category, year, description, orderRank } | order(orderRank)`);
 
 export async function getDiaryProjects(): Promise<ProjectType[]> {
   const { data } = await sanityFetch({ query: DIARY_QUERY });
@@ -78,7 +78,7 @@ export const PORTRAITS_QUERY = defineQuery(`*[
   _type == "project"
   && category == "Portraits"
   && defined(slug.current)
-]{_id, title, slug, thumbnail, gallery, category, year, description } | order(orderRank)`);
+] | order(orderRank) {_id, title, slug, thumbnail, gallery, category, year, description, orderRank }`);
 
 export async function getPortraitsProjects(): Promise<ProjectType[]> {
   const { data } = await sanityFetch({ query: PORTRAITS_QUERY });
@@ -89,7 +89,7 @@ export const COMPANIES_QUERY = defineQuery(`*[
   _type == "project"
   && category == "Companies"
   && defined(slug.current)
-]{_id, title, slug, thumbnail, gallery, category, year, description } | order(orderRank)`);
+] | order(orderRank) {_id, title, slug, thumbnail, gallery, category, year, description, orderRank } `);
 
 export async function getCompaniesProjects(): Promise<ProjectType[]> {
   const { data } = await sanityFetch({ query: COMPANIES_QUERY });
@@ -98,7 +98,7 @@ export async function getCompaniesProjects(): Promise<ProjectType[]> {
 
 export const AWARD_QUERY = defineQuery(`*[
   _type == "award"
-]{_id, title, slug, description, year } | order(orderRank)`);
+] | order(orderRank) {_id, title, slug, description, year, orderRank }`);
 export async function getAwardsProjects(): Promise<AboutType[]> {
   const { data } = await sanityFetch({ query: AWARD_QUERY });
   return data;
@@ -106,7 +106,7 @@ export async function getAwardsProjects(): Promise<AboutType[]> {
 
 export const BOOK_QUERY = defineQuery(`*[
   _type == "book"
-]{_id, title, slug, description, contenu } | order(orderRank)`);
+]{_id, title, slug, description, contenu, orderRank } | order(orderRank)`);
 export async function getBooksProjects(): Promise<AboutType[]> {
   const { data } = await sanityFetch({ query: BOOK_QUERY });
   return data;
@@ -114,7 +114,7 @@ export async function getBooksProjects(): Promise<AboutType[]> {
 
 export const WRITING_QUERY = defineQuery(`*[
   _type == "writing"
-]{_id, title, slug, description, year, "fileUrl": downloadFile.asset->url } | order(orderRank)`);
+]{_id, title, slug, description, year, "fileUrl": downloadFile.asset->url, orderRank } | order(orderRank)`);
 export async function getWritingProjects(): Promise<AboutType[]> {
   const { data } = await sanityFetch({ query: WRITING_QUERY });
   return data;
@@ -122,7 +122,7 @@ export async function getWritingProjects(): Promise<AboutType[]> {
 
 export const EXHIBITION_QUERY = defineQuery(`*[
   _type == "exhibition"
-]{_id, title, slug, description, year } | order(orderRank)`);
+]{_id, title, slug, description, year, orderRank } | order(orderRank)`);
 export async function getExhibitionsProjects(): Promise<AboutType[]> {
   const { data } = await sanityFetch({ query: EXHIBITION_QUERY });
   return data;
