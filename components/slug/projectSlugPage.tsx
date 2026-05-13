@@ -57,8 +57,12 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
 
   return (
     <>
+      <div className="flex-col md:hidden z-30 px-3 pt-5">
+        <h1 className="text-[25px] font-PPeditorialNew">{projectData.title}</h1>
+        <p className="text-[11px]">{projectData.category}</p>
+      </div>
       <Grid className="min-h-screen overflow-hidden font-SuisseIntl w-full px-3 md:px-5">
-        <div className="fixed top-11 md:top-4 left-3 md:left-5 z-30 col-span-full md:col-span-4 ">
+        <div className="hidden md:fixed top-11 md:top-4 left-3 md:left-5 z-30 col-span-full md:col-span-4 ">
           <h1 className="text-[25px] xl:text-[35px] font-PPeditorialNew">
             {projectData.title}
           </h1>
@@ -67,30 +71,25 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
 
         <motion.div
           transition={sharedTransition}
-          className={`flex flex-col pt-20 md:pt-14 lg:pt-7.5 relative
-            ${
-              showCarousel
-                ? "col-span-full md:col-span-4 md:col-start-6 lg:col-start-7 lg:col-span-4"
-                : "col-span-full md:col-span-10 md:col-start-1 lg:col-start-7 lg:col-span-6"
-            }`}
+          className="flex flex-col pt-3 md:pt-10 lg:pt-7.5 relative col-span-full md:col-start-6 lg:col-span-6 lg:col-start-7"
+          animate={{
+            width: showCarousel ? "100% md:50%" : "100%",
+          }}
         >
-          <motion.div
-            className="flex items-start justify-start pointer-events-none"
-            style={{ originX: 0, originY: 0 }}
-          >
+          <div className="flex items-start justify-center lg:justify-end pointer-events-none">
             {selectedImage && (
               <UIImageSanity
                 asset={selectedImage.asset}
                 alt="Selected"
-                className={`w-full h-full object-contain object-top lg:object-left cursor-pointer pointer-events-auto transition-all duration-500 ${
+                className={`w-full h-full max-w-full md:max-w-[calc(100vw-4rem)] object-contain object-top lg:object-left cursor-pointer pointer-events-auto transition-all duration-500 ${
                   showCarousel
-                    ? "max-h-[80vh] md:max-h-[60vh] lg:max-h-[50vh]"
-                    : "max-h-[80vh] md:max-h-[85vh] lg:max-h-[80vh]"
+                    ? "max-h-[70vh] md:max-h-[60vh] lg:max-h-[40vh]"
+                    : "max-h-[70vh] md:max-h-[75vh] lg:max-h-[80vh]"
                 }`}
                 onClick={() => setShowCarousel(!showCarousel)}
               />
             )}
-          </motion.div>
+          </div>
         </motion.div>
       </Grid>
 
