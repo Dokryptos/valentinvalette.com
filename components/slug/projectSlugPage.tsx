@@ -73,7 +73,7 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
           transition={sharedTransition}
           className="flex flex-col pt-3 md:pt-10 lg:pt-7.5 relative col-span-full md:col-start-6 lg:col-span-6 lg:col-start-7"
           animate={{
-            width: showCarousel ? "100% md:50%" : "100%",
+            width: showCarousel ? "50%" : "100%",
           }}
         >
           <div className="flex items-start justify-center lg:justify-end pointer-events-none">
