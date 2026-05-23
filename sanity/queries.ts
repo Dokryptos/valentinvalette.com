@@ -127,3 +127,11 @@ export async function getExhibitionsProjects(): Promise<AboutType[]> {
   const { data } = await sanityFetch({ query: EXHIBITION_QUERY });
   return data;
 }
+
+export const BIOGRAPHIE_QUERY = defineQuery(`*[
+  _type == "biographie"
+]{_id, description, photoProfil }`);
+export async function getBiographiesProjects(): Promise<AboutType[]> {
+  const { data } = await sanityFetch({ query: BIOGRAPHIE_QUERY });
+  return data;
+}

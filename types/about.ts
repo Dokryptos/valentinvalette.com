@@ -1,4 +1,5 @@
 import type { Slug } from "@sanity/types";
+import { SanityImage } from "./biographie";
 
 export type BookContenu =
   | { _type: "singleImage"; asset: { _ref: string; url?: string } }
@@ -21,6 +22,7 @@ export default interface AboutDescription {
   description: string;
   year: number;
   title: string;
+  photoProfil: SanityImage;
   contenu?: BookContenu;
   downloadFile?: {
     asset: {

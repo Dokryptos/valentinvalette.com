@@ -5,7 +5,15 @@ import { awardType } from "./awardTypes";
 import { bookType } from "./bookTypes";
 import { exhibitionType } from "./exhibitionTypes";
 import { writingType } from "./writingTypes";
+import { biographieType } from "./biographie";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [projectType, awardType, bookType, exhibitionType, writingType],
+  types: [
+    projectType,
+    awardType,
+    bookType,
+    exhibitionType,
+    writingType,
+    biographieType,
+  ],
 };

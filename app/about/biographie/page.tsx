@@ -1,19 +1,17 @@
-"use client";
-import Image from "next/image";
-import photoProfil from "@/public/photoProfil.png";
+import { getBiographiesProjects } from "@/sanity/queries";
+export const revalidate = 30;
+export const dynamic = "force-dynamic";
+import { UIImageSanity } from "@/components/ui/image/sanity";
 
-export default function BiographiePage() {
+export default async function BiographiePage() {
+  const bio = await getBiographiesProjects();
+
   return (
-    <div className="h-screen">
-      <p>
-        Valentin Valette est né en 1994 dans les Pyrénées-Atlantiques.
-        Auteur-photographe français d’origine algérienne, il est également
-        doctorant en anthropologie visuelle. Il est basé entre les Pyrénées, le
-        Maghreb et le Golfe persique.
-      </p>
+    <div>
+      <p className="whitespace-pre-wrap">{bio[0].description}</p>
       <div className="fixed bottom-4 right-4">
-        <Image
-          src={photoProfil}
+        <UIImageSanity
+          asset={bio[0].photoProfil}
           alt="Photo de profil de Valentin Valette"
           className="w-42.5 md:w-90 lg:w-62.5 xl:w-65 h-auto"
         />

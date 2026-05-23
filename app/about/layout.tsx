@@ -62,7 +62,7 @@ export default function AboutLayout({
                       marginRight: showArrow ? 12 : 0,
                     }}
                     transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                    className="overflow-hidden shrink-0"
+                    className="shrink-0"
                   >
                     <Image
                       src={Arrow}
@@ -85,7 +85,14 @@ export default function AboutLayout({
           </nav>
         </div>
 
-        <div className="col-start-5 md:col-start-6 lg:col-start-7 col-span-4 md:col-span-3 text-[11px] xl:text-[15px]">
+        <div
+          className=" col-start-5 md:col-start-6 lg:col-start-7
+            col-span-4 md:col-span-3
+            text-[11px] xl:text-[15px]
+            h-[calc(100dvh-5rem)] lg:h-[calc(100dvh-16px)]
+            overflow-y-auto
+            pb-5"
+        >
           {children}
         </div>
       </Grid>
