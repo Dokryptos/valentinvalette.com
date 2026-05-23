@@ -19,12 +19,18 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
     projectArray[0]?.slug.current || null,
   );
 
-  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
-    null,
+  const [selectedProjectId, setSelectedProjectId] = useState<string>(
+    projectArray[0]?._id,
   );
 
   const [showArrow, setShowArrow] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const handleSelect = (project: Project) => {
+    setSelectedProjectId(project._id);
+    setHoveredImage(project.thumbnail);
+    setHoveredLink(project.slug.current);
+  };
 
   useEffect(() => {
     const checkScrollNeeded = () => {
@@ -35,7 +41,7 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
 
       // Thresholds based on screen size
       const width = window.innerWidth;
-      let threshold = 17; // desktop default
+      let threshold = 17;
 
       if (width < 768) {
         threshold = 5; // mobile
@@ -73,12 +79,10 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
               className="group font-SuisseIntl flex cursor-pointer w-77.5 md:w-55 lg:w-55 xl:w-85 z-10"
               key={project._id}
               onTouchStart={() => {
-                setSelectedProjectId(project._id);
+                handleSelect(project);
               }}
               onMouseEnter={() => {
-                setSelectedProjectId(project._id);
-                setHoveredImage(project.thumbnail);
-                setHoveredLink(project.slug.current);
+                handleSelect(project);
               }}
             >
               <span
