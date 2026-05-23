@@ -89,7 +89,7 @@ export default function AboutLayout({
           className=" col-start-5 md:col-start-6 lg:col-start-7
             col-span-4 md:col-span-3
             text-[11px] xl:text-[15px]
-            h-[calc(100dvh-5rem)] lg:h-[calc(100dvh-16px)]
+            h-[calc(100dvh-4rem)]
             overflow-y-auto
             pb-5"
         >

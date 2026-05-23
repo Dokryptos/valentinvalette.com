@@ -9,11 +9,11 @@ export default async function BiographiePage() {
   return (
     <div>
       <p className="whitespace-pre-wrap">{bio[0].description}</p>
-      <div className="fixed bottom-4 right-4">
+      <div className="fixed bottom-4 left-4">
         <UIImageSanity
           asset={bio[0].photoProfil}
           alt="Photo de profil de Valentin Valette"
-          className="w-42.5 md:w-90 lg:w-62.5 xl:w-65 h-auto"
+          className="w-30 md:w-60 lg:w-62.5 xl:w-65 h-auto"
         />
       </div>
     </div>
