@@ -3,10 +3,10 @@
 import Project, { SanityImage } from "@/types/project";
 import { UIImageSanity } from "../ui/image/sanity";
 import Link from "next/link";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import Image from "next/image";
 import arrowLeft from "@/public/Arrow.png";
-
+import { urlFor } from "@/sanity/lib/image";
 interface ProjectListProps {
   projectArray: Project[];
 }
@@ -32,6 +32,28 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
     setHoveredLink(project.slug.current);
   };
 
+  const preloadingKey = useMemo(() => {
+    if (!projectArray) return;
+
+    return projectArray
+      .map((asset) => {
+        const thumbnailAsset = asset.thumbnail;
+        return urlFor(thumbnailAsset).url();
+      })
+      .join(".");
+  }, [projectArray]);
+  useEffect(() => {
+    if (!projectArray) return;
+
+    projectArray.forEach((asset) => {
+      const thumbnailAsset = asset.thumbnail;
+
+      const img = new window.Image();
+      img.src = urlFor(thumbnailAsset).url();
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preloadingKey]);
+
   useEffect(() => {
     const checkScrollNeeded = () => {
       if (!scrollContainerRef.current) return;
@@ -39,9 +61,8 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
       const container = scrollContainerRef.current;
       const hasOverflow = container.scrollWidth > container.clientWidth;
 
-      // Thresholds based on screen size
       const width = window.innerWidth;
-      let threshold = 17;
+      let threshold = 17; // desktop default
 
       if (width < 768) {
         threshold = 5; // mobile
@@ -112,7 +133,7 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
         </div>
       </div>
       {hoveredImage && (
-        <div>
+        <div className="hidden md:block">
           <Link
             href={`/${hoveredLink}`}
             className="bottom-3 right-3 md:right-5 md:bottom-5 fixed z-0 block overflow-hidden "
