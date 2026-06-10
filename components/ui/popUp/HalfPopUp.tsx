@@ -1,8 +1,7 @@
 "use client";
 import { useEffect } from "react";
-import Grid from "../grid";
 
-interface FullPagePopupProps {
+interface HalfPagePopupProps {
   open: boolean;
   onClose: () => void;
   direction?: "left" | "right";
@@ -11,14 +10,14 @@ interface FullPagePopupProps {
   children: React.ReactNode;
 }
 
-export default function FullPagePopup({
+export default function HalfPagePopup({
   open,
   onClose,
-  direction = "right",
+  direction = "left",
   color,
   textColor,
   children,
-}: FullPagePopupProps) {
+}: HalfPagePopupProps) {
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
@@ -27,36 +26,44 @@ export default function FullPagePopup({
     };
   }, [open]);
 
-  const translateClass =
-    direction === "right"
-      ? open
-        ? "translate-x-0"
-        : "translate-x-full"
-      : open
-        ? "translate-x-0"
-        : "-translate-x-full";
-
   const positionClass = direction === "right" ? "right-0" : "left-0";
+  const translateClass = open
+    ? "translate-x-0"
+    : direction === "right"
+      ? "translate-x-full"
+      : "-translate-x-full";
 
   return (
-    <Grid
-      className={`fixed inset-0 z-80 flex ${positionClass} ${direction === "right" ? "justify-end" : "justify-start"} items-center pointer-events-none gap-5`}
-    >
+    <div className="fixed inset-0 z-80 pointer-events-none ">
       <div
-        className={`${color || "bg-white"}  h-full overflow-y-auto col-span-8 md:col-span-5 lg:col-span-6 shadow-xl transition-transform duration-500 ${translateClass} pointer-events-auto relative`}
+        className={`absolute inset-0 bg-black transition-opacity duration-500 ${
+          open ? "opacity-20 pointer-events-auto" : "opacity-0"
+        }`}
+        onClick={onClose}
+      />
+      <div
+        className={`
+          absolute top-0 h-full
+          ${positionClass}
+          w-full md:w-1/2
+          ${color || "bg-white"}
+          shadow-xl
+          overflow-y-auto
+          transition-transform duration-500
+          pointer-events-auto
+          ${translateClass}
+        `}
       >
         <button
-          className={`absolute top-4 right-4 text-xl text-${textColor || "black"} p-2 cursor-pointer`}
+          className={`absolute top-4 right-4 text-xl text-${textColor || "black"} p-2 cursor-pointer z-10`}
           onClick={onClose}
         >
           ×
         </button>
-        <div
-          className={`flex flex-col overflow-y-auto pb-10 text-${textColor || "black"}`}
-        >
+        <div className={`flex flex-col pb-4 text-${textColor || "black"}`}>
           {children}
         </div>
       </div>
-    </Grid>
+    </div>
   );
 }

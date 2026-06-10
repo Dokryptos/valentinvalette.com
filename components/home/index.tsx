@@ -40,14 +40,14 @@ export default function HomeComponent({ projects }: HomeProps) {
                 setHoveredLink(project.slug.current);
               }}
             >
-              <span className="text-[15px] md:text-[11px] lg:text-[15px] pr-3 ">
+              <span className="text-[11px] lg:text-[15px] pr-3 ">
                 {index < 9 ? `0${index + 1}` : index + 1}
               </span>
               <div>
-                <h2 className="font-PPeditorialNew text-[28px] md:text-[18px] lg:text-[28px]">
+                <h2 className="font-PPeditorialNew text-[18px] lg:text-[28px]">
                   {project.title}
                 </h2>
-                <div className="text-[15px] md:text-[11px] lg:text-[15px]">
+                <div className="text-[11px] lg:text-[15px]">
                   <span>
                     {project.category.charAt(0).toUpperCase() +
                       project.category.slice(1)}

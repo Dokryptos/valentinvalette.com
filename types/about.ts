@@ -8,7 +8,11 @@ export type BookContenu =
       image1: { asset: { _ref: string; url?: string } };
       image2: { asset: { _ref: string; url?: string } };
     }
-  | { _type: "descriptionBlock"; children: Array<{ text: string }> };
+  | {
+      _type: "descriptionBlock";
+      children: Array<{ _type?: string; text: string; marks?: string[] }>;
+      markDefs?: Array<{ _key: string; _type: string }>;
+    };
 
 export default interface AboutDescription {
   fileUrl: {

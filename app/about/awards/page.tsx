@@ -8,7 +8,7 @@ export default async function AwardsPage({}) {
     <div>
       {awards.map((award) => (
         <div
-          className="flex gap-4 mb-4 text-[11px] xl:text-[15px] font-SuisseIntl"
+          className="flex gap-4 mb-4 text-[11px] xl:text-[15px] font-SuisseIntl whitespace-pre-wrap"
           key={award._id}
         >
           <span>{award.year}</span>

@@ -100,10 +100,10 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
         color="bg-[#998D77]"
         textColor="[#FAEEBC]"
       >
-        <h2 className="p-3 md:p-5 xl:p-6 pb-6 text-[11px] xl:text-[15px] font-SuisseIntl">
+        <h2 className="p-3 pt-8 md:pt-8 md:p-5 xl:p-6 pb-6 text-[11px] xl:text-[15px] font-SuisseIntl">
           {projectData.title}
         </h2>
-        <div className="px-4 md:px-5 xl:px-6 whitespace-pre-wrap font-SuisseIntl overflow-y-auto text-[11px] xl:text-[15px]">
+        <div className="px-4 md:px-5 xl:px-6 whitespace-pre-wrap text-justify font-SuisseIntl overflow-y-auto text-[11px] xl:text-[15px]">
           {projectData.description}
         </div>
       </HalfPopUp>

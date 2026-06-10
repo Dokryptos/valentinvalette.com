@@ -11,8 +11,8 @@ import { aboutPageColors, defaultAboutColor } from "./colors";
 
 const aboutNavigation = [
   { label: "Awards", href: "/about/awards" },
-  // { label: "Book", href: "/about/book" },
-  { label: "Biographie", href: "/about/biographie" },
+  { label: "Book", href: "/about/book" },
+  { label: "Biography", href: "/about/biography" },
   { label: "Exhibitions", href: "/about/exhibitions" },
   { label: "Instagram", href: "https://www.instagram.com/valentin.valette/" },
   { label: "Newsletter", href: "/about/newsletter" },

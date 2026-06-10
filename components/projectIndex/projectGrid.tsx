@@ -55,11 +55,13 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
                 </div>
 
                 <div className="font-SuisseIntl text-[9px] xl:text-[12px] text-[#AAAAAA] group-hover:text-black transition-colors duration-300">
-                  <div className="flex justify-between items-baseline">
+                  <div className="flex justify-between items-baseline whitespace-pre-wrap">
                     <h2>{project?.title}</h2>
                     <span>{project?.year}</span>
                   </div>
-                  <span>{project?.category}</span>
+                  <span className="whitespace-pre-wrap">
+                    {project?.category}
+                  </span>
                 </div>
               </Link>
             </motion.div>
