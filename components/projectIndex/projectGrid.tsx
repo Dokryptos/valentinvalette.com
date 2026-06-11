@@ -21,11 +21,11 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
   };
 
   return (
-    <div className="w-full min-h-screen h-dvh">
+    <div className="w-full">
       <motion.div
         layout
         transition={springTransition}
-        className="grid gap-x-3 gap-y-10 px-3 md:px-5 h-full overflow-y-auto pb-50"
+        className="grid gap-x-3 gap-y-10 px-3 md:px-5 pb-5 lg:pb-50"
         style={{
           gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
         }}

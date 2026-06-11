@@ -107,18 +107,18 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
               }}
             >
               <span
-                className={`text-[15px] md:text-[11px] lg:text-[15px] pr-3 text-gray-400 group-hover:text-black transition-colors ${selectedProjectId === project._id ? "text-black" : ""}`}
+                className={`text-[12px] md:text-[11px] lg:text-[15px] pr-3 text-gray-400 group-hover:text-black transition-colors ${selectedProjectId === project._id ? "text-black" : ""}`}
               >
                 {index < 9 ? `0${index + 1}` : index + 1}
               </span>
               <div>
                 <h2
-                  className={`font-PPeditorialNew text-[28px] md:text-[18px] lg:text-[28px] text-gray-400 group-hover:text-black transition-colors ${selectedProjectId === project._id ? "text-black" : ""}`}
+                  className={`font-PPeditorialNew text-[18px] lg:text-[28px] text-gray-400 group-hover:text-black transition-colors ${selectedProjectId === project._id ? "text-black" : ""}`}
                 >
                   {project.title}
                 </h2>
                 <div
-                  className={`text-[15px] md:text-[11px] lg:text-[15px] text-gray-400 group-hover:text-black transition-colors ${selectedProjectId === project._id ? "text-black" : ""}`}
+                  className={`text-[12px] md:text-[11px] lg:text-[15px] text-gray-400 group-hover:text-black transition-colors ${selectedProjectId === project._id ? "text-black" : ""}`}
                 >
                   <span>
                     {project.category.charAt(0).toUpperCase() +
@@ -148,7 +148,7 @@ export default function ProjectList({ projectArray }: ProjectListProps) {
       )}
       {showArrow && (
         <div className="fixed bottom-3 left-3 md:bottom-5 md:left-5 font-SuisseIntl flex items-center">
-          <span className="text-[15px] md:text-[11px] lg:text-[15px] mr-3">
+          <span className="text-[12px] md:text-[11px] lg:text-[15px] mr-3">
             Next
           </span>
           <Image
