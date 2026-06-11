@@ -55,7 +55,11 @@ export default function BooksClient({ books }: BooksClientProps) {
                   return (
                     <li key={index}>
                       {contenuItem.asset && (
-                        <UIImageSanity asset={contenuItem.asset} alt="Image" />
+                        <UIImageSanity
+                          asset={contenuItem.asset}
+                          alt="Image"
+                          className="w-full h-auto"
+                        />
                       )}
                     </li>
                   );
@@ -63,20 +67,24 @@ export default function BooksClient({ books }: BooksClientProps) {
                 if (contenuItem._type === "doubleImage") {
                   return (
                     <li key={index}>
-                      <div style={{ display: "flex", gap: 8 }}>
+                      <div className="flex gap-2 w-full">
                         {contenuItem.image1?.asset && (
-                          <UIImageSanity
-                            asset={contenuItem.image1.asset}
-                            alt=""
-                            style={{ maxWidth: 100 }}
-                          />
+                          <div className="flex-1 min-w-0">
+                            <UIImageSanity
+                              asset={contenuItem.image1.asset}
+                              alt=""
+                              className="w-full h-auto"
+                            />
+                          </div>
                         )}
                         {contenuItem.image2?.asset && (
-                          <UIImageSanity
-                            asset={contenuItem.image2.asset}
-                            alt=""
-                            style={{ maxWidth: 100 }}
-                          />
+                          <div className="flex-1 min-w-0">
+                            <UIImageSanity
+                              asset={contenuItem.image2.asset}
+                              alt=""
+                              className="w-full h-auto"
+                            />
+                          </div>
                         )}
                       </div>
                     </li>
