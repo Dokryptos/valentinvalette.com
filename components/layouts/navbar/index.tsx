@@ -50,6 +50,16 @@ export default function Navbar() {
   const justEnteredAbout =
     pathname.startsWith("/about") && !prevPathname.startsWith("/about");
 
+  useEffect(() => {
+    const isInstant = !isReady || isLeavingAbout || justEnteredAbout;
+    document.documentElement.style.transition = isInstant
+      ? "none"
+      : "background-color 0.3s ease";
+    document.documentElement.style.backgroundColor = backgroundColor;
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", backgroundColor);
+  }, [backgroundColor, isReady, isLeavingAbout, justEnteredAbout]);
+
   const getTransition = () => {
     if (!isReady) return "none";
     if (isLeavingAbout || justEnteredAbout) return "background-color 0s ease";

@@ -19,15 +19,29 @@ export default function Intro() {
       const colors = ["#998D77", "#9EBEE4"];
       const chosenColor = colors[Math.floor(Math.random() * colors.length)];
       setRandomBg(chosenColor);
-
       setShowIntro(true);
+
+      document.documentElement.style.transition = "none";
+      document.documentElement.style.backgroundColor = chosenColor;
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", chosenColor);
+
+      // Sync avec le début du slide (delay 1.5s, durée 0.5s)
+      const timerSlide = setTimeout(() => {
+        document.documentElement.style.transition =
+          "background-color 0.5s ease-out";
+        document.documentElement.style.backgroundColor = "#ffffff";
+        if (meta) meta.setAttribute("content", "#ffffff");
+      }, 1500);
 
       const timerBg = setTimeout(() => {
         setIsVisibleBg(false);
         sessionStorage.setItem("hasSeenH1Animate", "true");
+        document.documentElement.style.transition = "none";
       }, 2000);
 
       return () => {
+        clearTimeout(timerSlide);
         clearTimeout(timerBg);
       };
     }

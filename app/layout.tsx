@@ -33,7 +33,7 @@ const SuisseIntl = localFont({
 export const metadata: Metadata = {
   title: "Valentin Valette",
   description: "Valentin valette's personal website.",
-  themeColor: "#000000",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
