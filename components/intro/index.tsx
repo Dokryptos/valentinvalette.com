@@ -48,6 +48,8 @@ export default function Intro() {
         sessionStorage.setItem("hasSeenH1Animate", "true");
         document.documentElement.style.transition = "none";
         document.body.style.transition = "none";
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setShowIntro(false);
       }, 2000);
 
       return () => {
