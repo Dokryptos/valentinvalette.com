@@ -159,7 +159,6 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
         onClose={() => setShowPopup(false)}
         direction="left"
         color="bg-[#998D77]"
-        bgColorHex="#998D77"
         textColor="[#FAEEBC]"
       >
         <h2 className="p-3 pt-8 md:pt-8 md:p-5 xl:p-6 pb-6 text-[11px] xl:text-[15px] font-SuisseIntl">

@@ -1,26 +1,13 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 interface HalfPagePopupProps {
   open: boolean;
   onClose: () => void;
   direction?: "left" | "right";
   color?: string;
-  bgColorHex?: string;
   textColor?: string;
   children: React.ReactNode;
-}
-
-function setPageColor(hex: string) {
-  document.body.style.backgroundColor = hex;
-  document.documentElement.style.backgroundColor = hex;
-  let meta = document.querySelector('meta[name="theme-color"]');
-  if (!meta) {
-    meta = document.createElement("meta");
-    meta.setAttribute("name", "theme-color");
-    document.head.appendChild(meta);
-  }
-  meta.setAttribute("content", hex);
 }
 
 export default function HalfPagePopup({
@@ -28,30 +15,16 @@ export default function HalfPagePopup({
   onClose,
   direction = "left",
   color,
-  bgColorHex,
   textColor,
   children,
 }: HalfPagePopupProps) {
-  const savedColorRef = useRef<string>("");
-
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-      if (bgColorHex) {
-        savedColorRef.current = document.body.style.backgroundColor || "#ffffff";
-        setPageColor(bgColorHex);
-      }
-    } else {
-      document.body.style.overflow = "";
-      if (bgColorHex && savedColorRef.current) {
-        const saved = savedColorRef.current;
-        setTimeout(() => setPageColor(saved), 500);
-      }
-    }
+    if (open) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [open, bgColorHex]);
+  }, [open]);
 
   const positionClass = direction === "right" ? "right-0" : "left-0";
   const translateClass = open
