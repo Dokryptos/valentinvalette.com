@@ -25,7 +25,7 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
       <motion.div
         layout
         transition={springTransition}
-        className="grid gap-x-3 gap-y-10 px-3 md:px-5 pb-5 lg:pb-50"
+        className="grid gap-x-3 gap-y-5 px-3 md:px-5 pb-5"
         style={{
           gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
         }}
@@ -46,11 +46,11 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
               className="group cursor-pointer"
             >
               <Link href={`/${project?.slug?.current}`} className="block">
-                <div className="relative overflow-hidden mb-3">
+                <div className="relative overflow-hidden mb-3 aspect-[3/4]">
                   <UIImageSanity
                     asset={project.thumbnail.asset}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
                 </div>
 
