@@ -6,7 +6,7 @@ import { useResponsiveGridRange } from "@/hooks/useResponsiveGridRange";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { aboutPageColors, defaultAboutColor } from "@/app/about/colors";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -33,7 +33,7 @@ export default function Navbar() {
   const isLeavingAbout = !pathname.startsWith("/about");
 
   const [isReady, setIsReady] = useState(false);
-  const prevPathnameRef = useRef(pathname);
+  const [prevPathname, setPrevPathname] = useState(pathname);
 
   useEffect(() => {
     const timer = requestAnimationFrame(() => {
@@ -43,12 +43,12 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    prevPathnameRef.current = pathname;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setPrevPathname(pathname);
   }, [pathname]);
 
   const justEnteredAbout =
-    pathname.startsWith("/about") &&
-    !prevPathnameRef.current.startsWith("/about");
+    pathname.startsWith("/about") && !prevPathname.startsWith("/about");
 
   const getTransition = () => {
     if (!isReady) return "none";

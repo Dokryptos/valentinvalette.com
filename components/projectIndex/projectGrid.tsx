@@ -46,7 +46,7 @@ export default function ProjectGrid({ projectArray }: ProjectGridProps) {
               className="group cursor-pointer"
             >
               <Link href={`/${project?.slug?.current}`} className="block">
-                <div className="relative overflow-hidden mb-3 aspect-[3/4]">
+                <div className="relative overflow-hidden mb-3 aspect-3/4">
                   <UIImageSanity
                     asset={project.thumbnail.asset}
                     alt={project.title}
