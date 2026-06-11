@@ -43,6 +43,7 @@ export default function BooksClient({ books }: BooksClientProps) {
       onClose={handleClose}
       direction="right"
       color="bg-[#faf9e8]"
+      bgColorHex="#faf9e8"
       textColor="black"
     >
       {books.map((book) => (
