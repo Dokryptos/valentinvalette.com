@@ -84,7 +84,14 @@ export const projectType = defineType({
     defineField({
       name: "description",
       title: "Description",
-      type: "text",
+      type: "array",
+      of: [
+        defineArrayMember({
+          name: "descriptionBlock",
+          title: "Paragraph",
+          type: "block",
+        }),
+      ],
       description: "The description of the project (Optional)",
     }),
     defineField({

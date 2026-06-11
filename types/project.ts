@@ -9,6 +9,12 @@ export interface SanityImage {
   };
 }
 
+export type ProjectDescriptionBlock = {
+  _type: "descriptionBlock";
+  children: Array<{ _type?: string; text: string; marks?: string[] }>;
+  markDefs?: Array<{ _key: string; _type: string }>;
+};
+
 export default interface Project {
   _id: string;
   title: string;
@@ -16,7 +22,7 @@ export default interface Project {
   slug: Slug;
   thumbnail: SanityImage;
   category: string;
-  description: string;
+  description?: ProjectDescriptionBlock[] | string;
   year: number;
   gallery: SanityImage[];
   orderRank?: string;

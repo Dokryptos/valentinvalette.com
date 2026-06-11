@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useMemo } from "react";
 import type Project from "@/types/project";
+import type { ProjectDescriptionBlock } from "@/types/project";
 import { UIImageSanity } from "../ui/image/sanity";
 import Grid from "../ui/grid";
 import HalfPopUp from "@/components/ui/popUp/HalfPopUp";
@@ -10,6 +11,32 @@ import { urlFor } from "@/sanity/lib/image";
 
 interface ProjectSlugPageProps {
   projectData: Project;
+}
+
+function renderSpans(
+  children: Array<{ _type?: string; text: string; marks?: string[] }>,
+) {
+  return children.map((span, i) => {
+    let node: React.ReactNode = span.text;
+    if (span.marks?.includes("em")) node = <em key={`em-${i}`}>{node}</em>;
+    if (span.marks?.includes("strong"))
+      node = <strong key={`strong-${i}`}>{node}</strong>;
+    return <span key={i}>{node}</span>;
+  });
+}
+
+function renderDescription(
+  description: ProjectDescriptionBlock[] | string | undefined | null,
+) {
+  if (!description) return null;
+  if (typeof description === "string") {
+    return <p className="whitespace-pre-wrap text-justify">{description}</p>;
+  }
+  return description.map((block, i) => (
+    <p key={i} className="whitespace-pre-wrap text-justify">
+      {renderSpans(block.children ?? [])}
+    </p>
+  ));
 }
 
 export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
@@ -137,8 +164,8 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
         <h2 className="p-3 pt-8 md:pt-8 md:p-5 xl:p-6 pb-6 text-[11px] xl:text-[15px] font-SuisseIntl">
           {projectData.title}
         </h2>
-        <div className="px-4 md:px-5 xl:px-6 whitespace-pre-wrap text-justify font-SuisseIntl overflow-y-auto text-[11px] xl:text-[15px]">
-          {projectData.description}
+        <div className="px-4 md:px-5 xl:px-6 font-SuisseIntl overflow-y-auto text-[11px] xl:text-[15px]">
+          {renderDescription(projectData.description)}
         </div>
       </HalfPopUp>
 
@@ -148,7 +175,9 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
             <Grid className="text-[11px] xl:text-[15px] w-full items-center mb-0">
               <div className="col-start-1 text-left">
                 {projectData.description &&
-                projectData.description.trim() !== "" ? (
+                (typeof projectData.description === "string"
+                  ? projectData.description.trim() !== ""
+                  : projectData.description.length > 0) ? (
                   <button
                     className="cursor-pointer"
                     onClick={() => setShowPopup(true)}
