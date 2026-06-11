@@ -24,7 +24,7 @@ function renderDescription(
     return <p className="whitespace-pre-wrap text-justify">{description}</p>;
   }
   return description.map((block, i) => (
-    <p key={i} className="whitespace-pre-wrap text-justify">
+    <p key={i} className="whitespace-pre-wrap text-justify m-0">
       {renderSpans(block.children ?? [])}
     </p>
   ));
@@ -34,7 +34,7 @@ export default async function BiographyPage() {
   const bio = await getBiographiesProjects();
 
   return (
-    <div>
+    <div className="overflow-hidden">
       <div className="text-[11px] xl:text-[15px]">
         {renderDescription(bio[0]?.description)}
       </div>
