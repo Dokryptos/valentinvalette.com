@@ -37,12 +37,7 @@ export function GridColsProvider({ children }: { children: ReactNode }) {
       }
     };
 
-    // Appeler au montage
     updateCols();
-
-    // Optionnel : écouter le redimensionnement de la fenêtre
-    window.addEventListener("resize", updateCols);
-    return () => window.removeEventListener("resize", updateCols);
   }, []);
 
   return (
