@@ -45,7 +45,7 @@ export default function HalfPagePopup({
         className={`
           absolute top-0 h-full
           ${positionClass}
-          w-full md:w-1/2
+          w-full md:w-[calc(50%-20px)]
           ${color || "bg-white"}
           shadow-xl
           overflow-y-auto

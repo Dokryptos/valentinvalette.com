@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import type Project from "@/types/project";
 import { UIImageSanity } from "../ui/image/sanity";
 import Grid from "../ui/grid";
 import HalfPopUp from "@/components/ui/popUp/HalfPopUp";
 import { AnimatePresence, motion } from "framer-motion";
+import { urlFor } from "@/sanity/lib/image";
 
 interface ProjectSlugPageProps {
   projectData: Project;
@@ -19,6 +20,28 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const images = projectData.gallery || [];
   const selectedImage = images[selectedImageIndex];
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  const preloadKey = useMemo(
+    () => images.map((img) => urlFor(img.asset).url()).join("."),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [projectData.slug],
+  );
+
+  useEffect(() => {
+    images.forEach((img) => {
+      const el = new window.Image();
+      el.src = urlFor(img.asset).url();
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preloadKey]);
+
   const sharedTransition = {
     duration: 0.6,
     ease: [0.22, 1, 0.36, 1] as const,
@@ -76,19 +99,30 @@ export default function ProjectSlugPage({ projectData }: ProjectSlugPageProps) {
             width: showCarousel ? "50%" : "100%",
           }}
         >
-          <div className="flex items-start justify-center lg:justify-end pointer-events-none">
-            {selectedImage && (
-              <UIImageSanity
-                asset={selectedImage.asset}
-                alt="Selected"
-                className={`w-full h-full max-w-full md:max-w-[calc(100vw-4rem)] object-contain object-top lg:object-left cursor-pointer pointer-events-auto transition-all duration-500 ${
-                  showCarousel
-                    ? "max-h-[70vh] md:max-h-[60vh] lg:max-h-[40vh]"
-                    : "max-h-[70vh] md:max-h-[75vh] lg:max-h-[80vh]"
-                }`}
-                onClick={() => setShowCarousel(!showCarousel)}
-              />
-            )}
+          <div className="flex items-start justify-center lg:justify-end pointer-events-none w-full">
+            <AnimatePresence mode="popLayout">
+              {selectedImage && (
+                <motion.div
+                  key={selectedImageIndex}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  className="w-full"
+                >
+                  <UIImageSanity
+                    asset={selectedImage.asset}
+                    alt="Selected"
+                    className={`w-full h-full max-w-full md:max-w-[calc(100vw-4rem)] object-contain object-top lg:object-left cursor-pointer pointer-events-auto transition-all duration-500 ${
+                      showCarousel
+                        ? "max-h-[70vh] md:max-h-[60vh] lg:max-h-[40vh]"
+                        : "max-h-[70vh] md:max-h-[75vh] lg:max-h-[80vh]"
+                    }`}
+                    onClick={() => setShowCarousel(!showCarousel)}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </motion.div>
       </Grid>
