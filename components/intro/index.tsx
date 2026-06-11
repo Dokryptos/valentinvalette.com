@@ -25,8 +25,13 @@ export default function Intro() {
       document.documentElement.style.backgroundColor = chosenColor;
       document.body.style.transition = "none";
       document.body.style.backgroundColor = chosenColor;
-      const meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.setAttribute("content", chosenColor);
+      let meta = document.querySelector('meta[name="theme-color"]');
+      if (!meta) {
+        meta = document.createElement("meta");
+        meta.setAttribute("name", "theme-color");
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute("content", chosenColor);
 
       // Sync avec le début du slide (delay 1.5s, durée 0.5s)
       const timerSlide = setTimeout(() => {
