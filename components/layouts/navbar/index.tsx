@@ -52,10 +52,11 @@ export default function Navbar() {
 
   useEffect(() => {
     const isInstant = !isReady || isLeavingAbout || justEnteredAbout;
-    document.documentElement.style.transition = isInstant
-      ? "none"
-      : "background-color 0.3s ease";
+    const transition = isInstant ? "none" : "background-color 0.3s ease";
+    document.documentElement.style.transition = transition;
     document.documentElement.style.backgroundColor = backgroundColor;
+    document.body.style.transition = transition;
+    document.body.style.backgroundColor = backgroundColor;
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute("content", backgroundColor);
   }, [backgroundColor, isReady, isLeavingAbout, justEnteredAbout]);

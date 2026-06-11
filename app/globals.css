@@ -16,7 +16,6 @@ body {
   touch-action: manipulation;
   user-select: none;
   background-color: #ffffff;
-  transition: background-color 0.3s ease;
   margin: 0;
   padding: 0;
 }

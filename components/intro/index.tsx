@@ -23,14 +23,18 @@ export default function Intro() {
 
       document.documentElement.style.transition = "none";
       document.documentElement.style.backgroundColor = chosenColor;
+      document.body.style.transition = "none";
+      document.body.style.backgroundColor = chosenColor;
       const meta = document.querySelector('meta[name="theme-color"]');
       if (meta) meta.setAttribute("content", chosenColor);
 
       // Sync avec le début du slide (delay 1.5s, durée 0.5s)
       const timerSlide = setTimeout(() => {
-        document.documentElement.style.transition =
-          "background-color 0.5s ease-out";
+        const t = "background-color 0.5s ease-out";
+        document.documentElement.style.transition = t;
         document.documentElement.style.backgroundColor = "#ffffff";
+        document.body.style.transition = t;
+        document.body.style.backgroundColor = "#ffffff";
         if (meta) meta.setAttribute("content", "#ffffff");
       }, 1500);
 
@@ -38,6 +42,7 @@ export default function Intro() {
         setIsVisibleBg(false);
         sessionStorage.setItem("hasSeenH1Animate", "true");
         document.documentElement.style.transition = "none";
+        document.body.style.transition = "none";
       }, 2000);
 
       return () => {
