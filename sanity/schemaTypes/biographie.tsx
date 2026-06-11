@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineField, defineType, defineArrayMember } from "sanity";
 import { ArchiveIcon } from "@sanity/icons";
 import {
   orderRankField,
@@ -33,7 +33,14 @@ export const biographieType = defineType({
     defineField({
       name: "description",
       title: "Description",
-      type: "text",
+      type: "array",
+      of: [
+        defineArrayMember({
+          name: "descriptionBlock",
+          title: "Paragraph",
+          type: "block",
+        }),
+      ],
       validation: (rule) =>
         rule.required().error(`Required to generate a page on the website`),
       description: "The description of the biographie project (Obligation)",

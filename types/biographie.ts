@@ -7,8 +7,14 @@ export interface SanityImage {
   };
 }
 
+export type BiographyDescriptionBlock = {
+  _type: "descriptionBlock";
+  children: Array<{ _type?: string; text: string; marks?: string[] }>;
+  markDefs?: Array<{ _key: string; _type: string }>;
+};
+
 export default interface Biographie {
   _id: string;
-  description: string;
+  description?: BiographyDescriptionBlock[] | string;
   photoProfil: SanityImage;
 }

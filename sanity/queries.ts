@@ -2,6 +2,7 @@ import { defineQuery } from "next-sanity";
 import { sanityFetch } from "@/sanity/lib/live";
 import ProjectType from "@/types/project";
 import AboutType from "@/types/about";
+import BiographieType from "@/types/biographie";
 import { notFound } from "next/navigation";
 
 export const INDEX_QUERY = defineQuery(`*[
@@ -131,7 +132,7 @@ export async function getExhibitionsProjects(): Promise<AboutType[]> {
 export const BIOGRAPHIE_QUERY = defineQuery(`*[
   _type == "biographie"
 ]{_id, description, photoProfil }`);
-export async function getBiographiesProjects(): Promise<AboutType[]> {
+export async function getBiographiesProjects(): Promise<BiographieType[]> {
   const { data } = await sanityFetch({ query: BIOGRAPHIE_QUERY });
   return data;
 }
