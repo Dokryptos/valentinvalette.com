@@ -26,6 +26,7 @@ export default function AboutLayout({
 }) {
   const pathname = usePathname();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   const backgroundColor =
     aboutPageColors[pathname as keyof typeof aboutPageColors] ||
     defaultAboutColor;

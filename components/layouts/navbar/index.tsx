@@ -6,7 +6,7 @@ import { useResponsiveGridRange } from "@/hooks/useResponsiveGridRange";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { aboutPageColors, defaultAboutColor } from "@/app/about/colors";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -33,6 +33,7 @@ export default function Navbar() {
   const isLeavingAbout = !pathname.startsWith("/about");
 
   const [isReady, setIsReady] = useState(false);
+  const prevPathnameRef = useRef(pathname);
 
   useEffect(() => {
     const timer = requestAnimationFrame(() => {
@@ -41,9 +42,17 @@ export default function Navbar() {
     return () => cancelAnimationFrame(timer);
   }, []);
 
+  useEffect(() => {
+    prevPathnameRef.current = pathname;
+  }, [pathname]);
+
+  const justEnteredAbout =
+    pathname.startsWith("/about") &&
+    !prevPathnameRef.current.startsWith("/about");
+
   const getTransition = () => {
     if (!isReady) return "none";
-    if (isLeavingAbout) return "background-color 0s ease";
+    if (isLeavingAbout || justEnteredAbout) return "background-color 0s ease";
     return "background-color 0.3s ease";
   };
   return (
