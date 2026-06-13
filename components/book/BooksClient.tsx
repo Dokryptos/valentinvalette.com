@@ -44,6 +44,7 @@ export default function BooksClient({ books }: BooksClientProps) {
       direction="right"
       color="bg-[#faf9e8]"
       textColor="black"
+      widthClassName="md:w-[50%]"
     >
       {books.map((book) => (
         <div key={book._id} className="p-5 pt-8 text-[11px] xl:text-[15px] font-SuisseIntl">

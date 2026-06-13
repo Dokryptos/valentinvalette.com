@@ -33,6 +33,12 @@ const SuisseIntl = localFont({
 export const metadata: Metadata = {
   title: "Valentin Valette",
   description: "Valentin valette's personal website.",
+  openGraph: {
+    title: "Valentin Valette",
+    description: "Valentin Valette's personal website.",
+    siteName: "Valentin Valette Website",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

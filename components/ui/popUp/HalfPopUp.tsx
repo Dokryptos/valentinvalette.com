@@ -7,6 +7,7 @@ interface HalfPagePopupProps {
   direction?: "left" | "right";
   color?: string;
   textColor?: string;
+  widthClassName?: string;
   children: React.ReactNode;
 }
 
@@ -16,6 +17,7 @@ export default function HalfPagePopup({
   direction = "left",
   color,
   textColor,
+  widthClassName,
   children,
 }: HalfPagePopupProps) {
   useEffect(() => {
@@ -45,7 +47,7 @@ export default function HalfPagePopup({
         className={`
           absolute top-0 h-full
           ${positionClass}
-          w-full md:w-[calc(50%-20px)]
+          w-full ${widthClassName ?? "md:w-[calc(50%-20px)]"}
           ${color || "bg-white"}
           shadow-xl
           overflow-y-auto
